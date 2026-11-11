@@ -1,0 +1,14 @@
+{
+  "name": "gt-sport-menu",
+  "version": "1.0.0",
+  "description": "Fan recreation of the Gran Turismo Sport top screen",
+  "scripts": {
+    "test": "playwright test",
+    "serve": "python3 -m http.server 4173 --directory site"
+  },
+  "type": "module",
+  "devDependencies": {
+    "@playwright/test": "^1.65.0"
+  },
+  "private": true
+}

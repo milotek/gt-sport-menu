@@ -1,0 +1,190 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>GT Sport Top Screen</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.51.0/dist/tabler-icons.min.css">
+  <link rel="stylesheet" href="css/menu.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <div id="stage" class="stage">
+    <div id="backdrop" class="backdrop" aria-hidden="true">
+      <div class="scape"></div>
+      <div class="scape"></div>
+      <div class="vignette"></div>
+    </div>
+
+    <section id="title-screen" class="title-screen">
+      <div class="title-mark">
+        <span class="title-gt">GRAN TURISMO</span>
+        <span class="title-sport">SPORT</span>
+      </div>
+      <button id="start" class="press-start" type="button">
+        <span class="btn-glyph cross" aria-hidden="true"></span>
+        <span>Press to start</span>
+      </button>
+      <p class="title-note">Fan-made recreation for personal use. Not affiliated with Sony Interactive Entertainment or Polyphony Digital.</p>
+    </section>
+
+    <main id="top-screen" class="top-screen" hidden>
+      <header class="top-bar">
+        <button class="gt-menu nav" type="button" data-balloon="GT Menu" data-group="top">
+          <span class="gt-glyph" aria-hidden="true"><i class="ti ti-steering-wheel"></i></span>
+        </button>
+        <nav class="modes" aria-label="Modes">
+          <button class="mode nav" type="button" data-group="top" data-balloon="Single-player races against the AI"><i class="ti ti-steering-wheel"></i><span>Arcade</span><em></em></button>
+          <button class="mode nav" type="button" data-group="top" data-balloon="Driving School, Mission Challenges, Circuit Experience and GT League"><i class="ti ti-grid-dots"></i><span>Campaign</span><em></em></button>
+          <button class="mode nav" type="button" data-group="top" data-balloon="Daily Races and FIA Gran Turismo Championships"><i class="ti ti-laurel-wreath"></i><span>Sport</span></button>
+          <button class="mode nav badge" type="button" data-group="top" data-balloon="Buy cars from manufacturers around the world"><i class="ti ti-building-bank"></i><span>Brand Central</span></button>
+          <button class="mode nav" type="button" data-group="top" data-balloon="Race online with players from around the world"><i class="ti ti-world"></i><span>Lobby</span></button>
+          <button class="mode nav" type="button" data-group="top" data-balloon="Photograph your cars in locations around the world"><i class="ti ti-camera"></i><span>Scapes</span></button>
+        </nav>
+        <div class="status">
+          <div class="status-row">
+            <div class="car-thumb" aria-hidden="true"><i class="ti ti-car"></i></div>
+            <span class="category">N300</span>
+            <span class="car-name">Civic Type R (FK2) '15</span>
+          </div>
+          <div class="status-row values">
+            <span class="stat"><i class="ti ti-coins"></i><b>50,000</b></span>
+            <span class="stat"><i class="ti ti-ticket"></i><b>40</b></span>
+            <span class="stat"><i class="ti ti-chart-line"></i><b>0.0</b><small>km</small></span>
+            <span class="pill">1</span>
+            <span class="pill rating">E</span>
+            <span class="pill shield"><i class="ti ti-shield-half"></i></span>
+          </div>
+        </div>
+        <div class="clock-box">
+          <time id="clock">--:--</time>
+          <i class="ti ti-antenna-bars-5 online"></i>
+        </div>
+      </header>
+
+      <nav class="rail" aria-label="Functions">
+        <button class="nav" type="button" data-group="rail" data-balloon="Home"><i class="ti ti-home"></i></button>
+        <button class="nav" type="button" data-group="rail" data-balloon="Livery Editor"><i class="ti ti-palette"></i></button>
+        <button class="nav" type="button" data-group="rail" data-balloon="My Library"><i class="ti ti-photo"></i></button>
+        <button class="nav" type="button" data-group="rail" data-balloon="Mileage Exchange"><i class="ti ti-road"></i></button>
+        <button class="nav" type="button" data-group="rail" data-balloon="Discover"><i class="ti ti-search"></i></button>
+        <button class="nav" type="button" data-group="rail" data-balloon="Save"><i class="ti ti-circle-dot"></i></button>
+      </nav>
+
+      <button class="live-tile nav" type="button" data-group="live" data-balloon="Gran Turismo LIVE">
+        <span class="live-art"><small>GRAN TURISMO</small><strong>LIVE</strong></span>
+        <span class="live-label">GRAN TURISMO LIVE</span>
+      </button>
+
+      <aside id="player-dock" class="player-dock" hidden>
+        <div id="yt-player"></div>
+      </aside>
+
+      <div id="now-playing" class="now-playing" aria-live="polite">
+        <i class="ti ti-music"></i>
+        <span><b id="np-title"></b><small id="np-artist"></small></span>
+      </div>
+
+      <button id="scape-pill" class="scape-pill nav" type="button" data-group="pill">
+        <span class="btn-glyph triangle" aria-hidden="true"></span>
+        <span>Go to this Scapes Scene</span>
+      </button>
+
+      <footer class="panels">
+        <button class="panel news nav" type="button" data-group="panels">
+          <div class="server">
+            <span class="server-face" aria-hidden="true"><i class="ti ti-mood-smile-beam"></i></span>
+            <div>
+              <p class="dim">Online Server Status</p>
+              <p class="strong">The server is operating normally.</p>
+            </div>
+          </div>
+          <span class="maint">Maintenance and Issues</span>
+        </button>
+        <button class="panel nav" type="button" data-group="panels">
+          <span class="tag" id="news-tag">Sport Mode</span>
+          <p class="headline" id="news-headline"></p>
+          <span class="foot"><span>News</span><span id="news-date"></span></span>
+        </button>
+        <button class="panel feed nav" type="button" data-group="panels">
+          <div class="feed-head">
+            <span class="avatar" aria-hidden="true"><i class="ti ti-user"></i></span>
+            <p>Scapes Photos</p>
+          </div>
+          <p class="feed-user" id="feed-user">Cabernet</p>
+          <span class="foot"><span>Activity Feed</span><span class="feed-meta"><i class="ti ti-heart"></i>3 <i class="ti ti-message-circle"></i>3 <span id="feed-date"></span></span></span>
+        </button>
+        <button class="panel achievements nav" type="button" data-group="panels">
+          <p class="empty">There are currently no bonuses to claim</p>
+          <span class="foot"><span>Achievements</span></span>
+        </button>
+      </footer>
+
+      <div id="balloon" class="balloon" role="tooltip" hidden></div>
+      <div id="toast" class="toast" role="status" hidden></div>
+    </main>
+
+    <button id="settings-toggle" class="settings-toggle" type="button" aria-controls="settings" aria-expanded="false" title="Settings (S)" hidden>
+      <i class="ti ti-adjustments-horizontal"></i>
+    </button>
+
+    <section id="settings" class="settings" aria-label="Settings" hidden>
+      <h2>Settings</h2>
+
+      <fieldset>
+        <legend>Season</legend>
+        <div class="seg" role="radiogroup">
+          <label><input type="radio" name="season" value="auto" checked><span>Calendar</span></label>
+          <label><input type="radio" name="season" value="normal"><span>Normal</span></label>
+          <label><input type="radio" name="season" value="christmas"><span>Christmas</span></label>
+        </div>
+        <p class="hint" id="season-hint"></p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Music</legend>
+        <div class="seg" role="radiogroup">
+          <label><input type="radio" name="source" value="youtube" checked><span>YouTube</span></label>
+          <label><input type="radio" name="source" value="local"><span>My files</span></label>
+          <label><input type="radio" name="source" value="off"><span>Off</span></label>
+        </div>
+        <div class="track">
+          <b id="track-title">-</b>
+          <small id="track-artist"></small>
+          <small id="track-status" class="hint"></small>
+        </div>
+        <div class="transport">
+          <button id="prev" type="button" title="Previous"><i class="ti ti-player-skip-back"></i></button>
+          <button id="play" type="button" title="Play/Pause (Space)"><i class="ti ti-player-play"></i></button>
+          <button id="next" type="button" title="Next (N)"><i class="ti ti-player-skip-forward"></i></button>
+          <input id="volume" type="range" min="0" max="100" value="60" aria-label="Volume">
+        </div>
+        <label class="file-pick">
+          <input id="local-files" type="file" accept="audio/*" multiple>
+          <span><i class="ti ti-folder-plus"></i> Add audio files</span>
+        </label>
+        <p class="hint" id="local-count"></p>
+      </fieldset>
+
+      <fieldset>
+        <legend>Backgrounds</legend>
+        <label class="check"><input id="slideshow" type="checkbox" checked><span>Slideshow</span></label>
+        <label class="file-pick">
+          <input id="local-images" type="file" accept="image/*" multiple>
+          <span><i class="ti ti-photo-plus"></i> Add background images</span>
+        </label>
+        <p class="hint" id="bg-credit"></p>
+      </fieldset>
+
+      <div class="settings-foot">
+        <button id="clear-local" type="button">Remove my files</button>
+        <button id="fullscreen" type="button"><i class="ti ti-maximize"></i> Fullscreen (F)</button>
+        <a href="credits.html" target="_blank" rel="noopener">Sources &amp; credits</a>
+      </div>
+    </section>
+  </div>
+</body>
+</html>

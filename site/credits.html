@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sources &amp; credits · GT Sport Top Screen</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;500;700&display=swap">
+  <style>
+    body { margin: 0; background: #0c0d0f; color: #e8e9eb; font: 15px/1.55 "Roboto", sans-serif; }
+    main { max-width: 960px; margin: 0 auto; padding: 48px 24px 96px; }
+    h1 { font-weight: 400; letter-spacing: 1px; }
+    h2 { margin-top: 48px; font-weight: 500; border-bottom: 1px solid #2a2c31; padding-bottom: 8px; }
+    a { color: #7fb4ff; }
+    table { width: 100%; border-collapse: collapse; margin-top: 16px; }
+    th, td { text-align: left; padding: 6px 8px; border-bottom: 1px solid #1d1f23; vertical-align: top; }
+    th { color: #9a9ca3; font-weight: 500; font-size: 13px; text-transform: uppercase; letter-spacing: 1px; }
+    .ok { color: #6cc24a; }
+    .gap { color: #e0a03a; }
+    .muted { color: #9a9ca3; }
+  </style>
+</head>
+<body>
+  <main>
+    <h1>Sources &amp; credits</h1>
+    <p class="muted">This is a fan-made recreation of the Gran Turismo Sport Top Screen for personal use. It is not affiliated with or endorsed by Sony Interactive Entertainment or Polyphony Digital. "Gran Turismo" is a trademark of Sony Interactive Entertainment Inc.</p>
+    <p class="muted">The layout follows the official <a href="https://www.gran-turismo.com/us/gtsport/manual/#!/top/content01">Top Screen manual page</a>. No game audio is bundled. Music plays through YouTube's own embedded player or from files you add yourself.</p>
+
+    <h2>Christmas</h2>
+    <div id="christmas"></div>
+
+    <h2>Menu music</h2>
+    <div id="menu"></div>
+
+    <h2>Backgrounds</h2>
+    <div id="backgrounds"></div>
+
+    <h2>Fonts and icons</h2>
+    <p>The in-game UI font (Sony's SST) is not freely licensed. The page uses SST if it is installed locally and falls back to Roboto from Google Fonts. Icons are <a href="https://tabler.io/icons">Tabler Icons</a> (MIT), standing in for the in-game glyphs.</p>
+  </main>
+  <script type="module">
+    const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
+    const [c, tracks] = await Promise.all([fetch("data/catalog.json").then((r) => r.json()), fetch("data/menu_tracks.json").then((r) => r.json())]);
+    const w = c.christmasWindow;
+    const x = c.christmasMusic;
+    document.querySelector("#christmas").innerHTML = `
+      <p>Calendar window: ${w.start[1]} Dec to ${w.end[1]} Dec, local time.</p>
+      <ul>${w.evidence.map((e) => `<li>${esc(e)}</li>`).join("")}</ul>
+      <p class="gap">${esc(w.approximation)}</p>
+      <p>${esc(x.summary)}</p>
+      <table><tr><th>Reported title</th><th>Evidence</th></tr>
+      ${x.reportedTitles.map((t) => `<tr><td>${esc(t.title)}</td><td class="muted">${esc(t.evidence)}</td></tr>`).join("")}</table>
+      <p class="gap">${esc(x.gaps)}</p>
+      <table><tr><th>Recording</th><th>Channel</th><th>Published</th></tr>
+      ${x.recordings.map((r) => `<tr><td><a href="https://www.youtube.com/watch?v=${r.youtubeId}">${esc(r.title)}</a></td><td>${esc(r.channel)}</td><td>${r.published}</td></tr>`).join("")}</table>`;
+    const linked = tracks.filter((t) => t.youtubeId).length;
+    document.querySelector("#menu").innerHTML = `
+      <p>${esc(c.menuMusic.summary)} Source: <a href="${c.menuMusic.source}">GTPlanet</a>.</p>
+      <p><span class="ok">${linked}</span> of ${tracks.length} tracks are linked to an official YouTube upload.</p>
+      <p class="gap">${esc(c.menuMusic.gaps)}</p>
+      <table><tr><th>Artist</th><th>Title</th><th>Playback</th></tr>
+      ${tracks.map((t) => `<tr><td>${esc(t.artist)}</td><td>${esc(t.title)}</td><td>${t.youtubeId ? `<a class="ok" href="https://www.youtube.com/watch?v=${t.youtubeId}">${esc(t.youtubeChannel)}</a>` : '<span class="gap">not linked</span>'}</td></tr>`).join("")}</table>`;
+    const bg = (list, label) => `<h3>${label}</h3><table><tr><th>Image</th><th>Type</th><th>Credit</th></tr>
+      ${list.map((b) => `<tr><td><a href="${esc(b.source)}">${esc(b.title ?? "Title screen")}</a></td><td>${b.kind === "official-hotlink" ? "official, hotlinked" : "substitute"}</td><td class="muted">${esc(b.credit)}</td></tr>`).join("")}</table>`;
+    document.querySelector("#backgrounds").innerHTML = `
+      <p>GT Sport's real Top Screen shows in-game clips and Scapes photos. Those are not published as standalone images, so the normal-season backgrounds are licensed photos of real Scapes-style locations and are labelled as substitutes. Official images are loaded straight from gran-turismo.com and are not rehosted.</p>
+      ${bg(c.backgrounds.normal, "Normal")}${bg(c.backgrounds.christmas, "Christmas")}${bg([c.backgrounds.title], "Title screen")}`;
+  </script>
+</body>
+</html>
