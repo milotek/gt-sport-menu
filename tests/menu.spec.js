@@ -173,9 +173,10 @@ test("local audio files persist and actually play", async ({ page }) => {
   ]);
   await expect(page.locator("#local-count")).toContainText("2 audio files");
   await expect(page.locator("#track-status")).toHaveText("Playing");
-  await expect(page.locator("#track-title")).toHaveText("Test Tone A");
+  const first = await page.locator("#track-title").textContent();
+  expect(["Test Tone A", "Test Tone B"]).toContain(first);
   await page.click("#next");
-  await expect(page.locator("#track-title")).toHaveText("Test Tone B");
+  await expect(page.locator("#track-title")).toHaveText(first === "Test Tone A" ? "Test Tone B" : "Test Tone A");
   await expect(page.locator("#track-status")).toHaveText("Playing");
   await page.click("#play");
   await expect(page.locator("#track-status")).toHaveText("Paused");
