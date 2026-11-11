@@ -38,7 +38,7 @@ async function open(page, { now, source = "off", season = "auto" } = {}) {
   );
   const errors = [];
   page.on("pageerror", (e) => errors.push(e.message));
-  await page.goto("/");
+  await page.goto("./");
   await expect(page.locator("body")).toHaveAttribute("data-ready", "true");
   return errors;
 }
@@ -214,38 +214,97 @@ test("local background images override the slideshow", async ({ page }) => {
   await expect.poll(() => visibleScape(page)).toMatch(/img\/backgrounds\//);
 });
 
-test("YouTube menu music starts after the entry gesture @network", async ({ page }) => {
-  test.setTimeout(150000);
-  await open(page, { source: "youtube", now: "2026-11-11T12:00:00" });
+async function audioState(page) {
+  return page.locator("#music").evaluate((a) => ({ src: a.currentSrc, time: a.currentTime, paused: a.paused, volume: a.volume }));
+}
+
+async function audioEnergy(page) {
+  return page.locator("#music").evaluate(async (a) => {
+    const ctx = new AudioContext();
+    const analyser = ctx.createAnalyser();
+    analyser.fftSize = 2048;
+    ctx.createMediaElementSource(a).connect(analyser).connect(ctx.destination);
+    await ctx.resume();
+    const buf = new Float32Array(analyser.fftSize);
+    let peak = 0;
+    for (let i = 0; i < 20; i++) {
+      await new Promise((r) => setTimeout(r, 100));
+      analyser.getFloatTimeDomainData(buf);
+      peak = Math.max(peak, Math.sqrt(buf.reduce((s, v) => s + v * v, 0) / buf.length));
+    }
+    return peak;
+  });
+}
+
+test("soundtrack starts natively on the entry gesture and keeps playing @network", async ({ page }) => {
+  test.setTimeout(180000);
+  const hosts = new Set();
+  page.on("request", (r) => hosts.add(new URL(r.url()).hostname));
+  const errors = await open(page, { source: "soundtrack", now: "2026-11-11T12:00:00" });
+  const manifest = await page.evaluate(() => fetch("data/soundtrack.json").then((r) => r.json()));
+  const normal = manifest.tracks.filter((t) => t.season === "normal").map((t) => t.src);
+  expect(normal).toHaveLength(62);
+  expect((await audioState(page)).src).toBe("");
   await enter(page);
-  await expect(page.locator("#player-dock")).toBeVisible();
-  await expect(page.locator("#player-dock iframe")).toHaveAttribute("src", /youtube\.com\/embed\//, { timeout: 20000 });
-  const box = await page.locator("#player-dock iframe").boundingBox();
-  expect(box.width).toBeGreaterThanOrEqual(200);
-  expect(box.height).toBeGreaterThanOrEqual(200);
-  await expect(page.locator("#track-status")).toHaveText("Playing", { timeout: 60000 });
-  const first = await page.locator("#track-title").textContent();
+  await expect(page.locator("#track-status")).toHaveText("Playing", { timeout: 90000 });
+  const first = await audioState(page);
+  expect(normal).toContain(first.src);
+  await expect.poll(async () => (await audioState(page)).time, { timeout: 30000 }).toBeGreaterThan(first.time + 2);
+  const energy = await audioEnergy(page);
+  test.info().annotations.push({ type: "playback", description: JSON.stringify({ src: first.src, rms: energy }) });
+  expect(energy).toBeGreaterThan(0.005);
   await expect(page.locator("#now-playing")).toHaveClass(/show/);
   await page.mouse.move(960, 600);
-  await page.screenshot({ path: `${SHOTS}/05_youtube_playing.png` });
+  await page.screenshot({ path: `${SHOTS}/05_soundtrack_playing.png` });
+  const title = await page.locator("#track-title").textContent();
   await page.keyboard.press("n");
-  await expect(page.locator("#track-title")).not.toHaveText(first);
-  await expect(page.locator("#track-status")).toHaveText("Playing", { timeout: 60000 });
+  await expect(page.locator("#track-title")).not.toHaveText(title);
+  await expect(page.locator("#track-status")).toHaveText("Playing", { timeout: 90000 });
+  const second = await audioState(page);
+  expect(second.src).not.toBe(first.src);
+  expect(normal).toContain(second.src);
+  await page.keyboard.press("s");
+  await page.click("#prev");
+  await expect(page.locator("#track-title")).toHaveText(title);
+  await expect(page.locator("#track-status")).toHaveText("Playing", { timeout: 90000 });
+  await page.click("#play");
+  await expect(page.locator("#track-status")).toHaveText("Paused");
+  const paused = (await audioState(page)).time;
+  await page.waitForTimeout(1500);
+  expect((await audioState(page)).time).toBeCloseTo(paused, 1);
+  await page.click("#play");
+  await expect(page.locator("#track-status")).toHaveText("Playing", { timeout: 30000 });
+  await page.locator("#volume").fill("25");
+  expect((await audioState(page)).volume).toBeCloseTo(0.25, 2);
+  expect([...hosts].filter((h) => /youtube|ytimg|googlevideo/.test(h))).toEqual([]);
+  expect(errors).toEqual([]);
 });
 
-test("Christmas YouTube recording plays in forced Christmas season @network", async ({ page }) => {
-  test.setTimeout(120000);
-  await open(page, { source: "youtube", season: "christmas" });
+test("Christmas season plays only the Christmas tracks @network", async ({ page }) => {
+  test.setTimeout(150000);
+  await open(page, { source: "soundtrack", now: "2026-12-22T20:00:00" });
+  const manifest = await page.evaluate(() => fetch("data/soundtrack.json").then((r) => r.json()));
+  const xmas = manifest.tracks.filter((t) => t.season === "christmas").map((t) => t.src);
+  expect(xmas).toHaveLength(3);
   await enter(page);
-  await expect(page.locator("#track-title")).toContainText("Christmas Songs in Gran Turismo Sport Menu");
-  await expect(page.locator("#track-status")).toHaveText("Playing", { timeout: 60000 });
+  await expect(page.locator("body")).toHaveAttribute("data-season", "christmas");
+  await expect(page.locator("#track-status")).toHaveText("Playing", { timeout: 90000 });
+  const a = await audioState(page);
+  expect(xmas).toContain(a.src);
+  await expect.poll(async () => (await audioState(page)).time, { timeout: 30000 }).toBeGreaterThan(a.time + 2);
+  await page.keyboard.press("s");
+  await page.locator('label:has(input[name="season"][value="normal"])').click();
+  await expect(page.locator("#track-status")).toHaveText("Playing", { timeout: 90000 });
+  const n = await audioState(page);
+  expect(xmas).not.toContain(n.src);
+  expect(manifest.tracks.find((t) => t.src === n.src).season).toBe("normal");
 });
 
-test("YouTube failure is reported instead of hanging", async ({ page }) => {
-  await page.route("https://www.youtube.com/iframe_api", (r) => r.abort());
-  await open(page, { source: "youtube" });
+test("unreachable tracks are skipped and reported", async ({ page }) => {
+  await page.route("https://archive.org/**", (r) => r.abort());
+  await open(page, { source: "soundtrack", season: "christmas" });
   await enter(page);
-  await expect(page.locator("#track-status")).toHaveText("YouTube player could not be loaded");
+  await expect(page.locator("#track-status")).toHaveText("This track could not be loaded. No playable tracks remain.", { timeout: 20000 });
 });
 
 test("narrow viewport stacks the layout without horizontal overflow", async ({ page }) => {
@@ -261,8 +320,9 @@ test("narrow viewport stacks the layout without horizontal overflow", async ({ p
 });
 
 test("credits page lists every catalogued source", async ({ page }) => {
-  await page.goto("/credits.html");
-  await expect(page.locator("#menu table tr")).toHaveCount(67);
+  await page.goto("credits.html");
+  await expect(page.locator("#menu table tr")).toHaveCount(63);
+  await expect(page.locator("#christmas")).toContainText("Silent Night");
   await expect(page.locator("#christmas")).toContainText("We Wish You a Merry Christmas");
   await expect(page.locator("#backgrounds")).toContainText("CC BY 3.0");
   await page.screenshot({ path: `${SHOTS}/08_credits.png`, fullPage: true });

@@ -41,13 +41,18 @@ Settings can force either season.
 
 ## Music
 
-No game audio is bundled or deployed.
+Music plays natively with HTML audio.
+No audio is bundled in this repo.
 
-- **Normal season:** 66 menu BGM titles from a GTPlanet community list. 38 of them link to official YouTube Topic or artist uploads and play through YouTube's visible embedded player. The rest are listed and skipped.
-- **Christmas:** the in-game carol arrangements were never released, so they play as YouTube gameplay recordings of the actual GT Sport Christmas menu.
+- **Soundtrack:** `site/data/soundtrack.json` lists 62 menu tracks and 3 Christmas tracks. Each `src` points straight at a per-file link inside the anonymous archive.org upload [Gran Turismo Complete Soundtrack](https://archive.org/details/gran-turismo-complete-soundtrack), so the browser streams from archive.org. The uploader states no licence.
+- **Missing:** four tracks from the GTPlanet community menu list are not in that upload and are listed in the manifest's `missing` field.
 - **My files:** add audio in Settings. Files are stored in IndexedDB and stay in this browser.
 
-To import a folder of your own game audio or Scapes captures for local use:
+To swap in your own recordings, such as MIDI remakes, put them under `site/media/` and change each track's `src` to the relative path.
+Anything else in the entry (title, artist, season) drives the playlists and the now-playing banner.
+`tools/build_soundtrack_manifest.py` regenerates the manifest from the soundtrack classification report.
+
+To import a folder of your own audio or Scapes captures for local use only:
 
 ```sh
 python3 tools/import_media.py ~/path/to/files --season christmas --dry-run
@@ -55,10 +60,8 @@ python3 tools/import_media.py ~/path/to/files --season christmas
 ```
 
 Files are copied into `site/media/local/` with snake_case names, and a manifest is written next to them.
-That folder is gitignored, and the Pages workflow refuses to deploy if it exists, so imported media stays on your machine.
+That folder is gitignored, so it stays on your machine.
 Name audio `Artist - Title.ext` to get proper track info.
-
-`tools/resolve_youtube.py` rebuilds the YouTube links from a `artist|title` list.
 
 ## Backgrounds
 

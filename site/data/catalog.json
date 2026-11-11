@@ -1,7 +1,13 @@
 {
   "christmasWindow": {
-    "start": [12, 21],
-    "end": [12, 25],
+    "start": [
+      12,
+      21
+    ],
+    "end": [
+      12,
+      25
+    ],
     "evidence": [
       "GTPlanet thread 'It's Chriiiiiiiistmas in GT Sport!!!' (posts dated 2018-12-21): Christmas menu music started at local midnight on 21 December; a player reported not hearing it the day before.",
       "Posts in the same thread on 2018-12-25 still describe Christmas-only menu music.",
@@ -11,42 +17,110 @@
   },
   "backgrounds": {
     "normal": [
-      { "src": "img/backgrounds/dumbo_manhattan_bridge.jpg", "title": "Manhattan Bridge from DUMBO, New York", "kind": "licensed-substitute", "credit": "Redd Angelo, CC0", "source": "https://commons.wikimedia.org/wiki/File:Manhattan_through_Dumbo_(Unsplash).jpg" },
-      { "src": "img/backgrounds/fuji_kawaguchiko.jpg", "title": "Mount Fuji from Lake Kawaguchi", "kind": "licensed-substitute", "credit": "Midori, CC BY 3.0", "source": "https://commons.wikimedia.org/wiki/File:Lake_Kawaguchiko_Sakura_Mount_Fuji_4.JPG" },
-      { "src": "img/backgrounds/lisbon_alfama_tram.jpg", "title": "Tram line 28, Alfama, Lisbon", "kind": "licensed-substitute", "credit": "Sonse, CC BY 2.0", "source": "https://commons.wikimedia.org/wiki/File:Tram_Line_28_in_Alfama_(50662582522).jpg" },
-      { "src": "img/backgrounds/monument_valley_us163.jpg", "title": "U.S. Route 163 to Monument Valley", "kind": "licensed-substitute", "credit": "katsrcool, CC BY 2.0", "source": "https://commons.wikimedia.org/wiki/File:Long_Road_to_Monument_Valley_U.S._Route_163.jpg" },
-      { "src": "img/backgrounds/wasatch_route6_sunset.jpg", "title": "Wasatch Mountains from U.S. Route 6, Utah", "kind": "licensed-substitute", "credit": "Ken Lund, CC BY-SA 2.0", "source": "https://commons.wikimedia.org/wiki/File:Misty_Sunset_over_Wasatch_Mountains,_U.S._Route_6,_Santaquin,_Utah.jpg" }
+      {
+        "src": "img/backgrounds/dumbo_manhattan_bridge.jpg",
+        "title": "Manhattan Bridge from DUMBO, New York",
+        "kind": "licensed-substitute",
+        "credit": "Redd Angelo, CC0",
+        "source": "https://commons.wikimedia.org/wiki/File:Manhattan_through_Dumbo_(Unsplash).jpg"
+      },
+      {
+        "src": "img/backgrounds/fuji_kawaguchiko.jpg",
+        "title": "Mount Fuji from Lake Kawaguchi",
+        "kind": "licensed-substitute",
+        "credit": "Midori, CC BY 3.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Lake_Kawaguchiko_Sakura_Mount_Fuji_4.JPG"
+      },
+      {
+        "src": "img/backgrounds/lisbon_alfama_tram.jpg",
+        "title": "Tram line 28, Alfama, Lisbon",
+        "kind": "licensed-substitute",
+        "credit": "Sonse, CC BY 2.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Tram_Line_28_in_Alfama_(50662582522).jpg"
+      },
+      {
+        "src": "img/backgrounds/monument_valley_us163.jpg",
+        "title": "U.S. Route 163 to Monument Valley",
+        "kind": "licensed-substitute",
+        "credit": "katsrcool, CC BY 2.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Long_Road_to_Monument_Valley_U.S._Route_163.jpg"
+      },
+      {
+        "src": "img/backgrounds/wasatch_route6_sunset.jpg",
+        "title": "Wasatch Mountains from U.S. Route 6, Utah",
+        "kind": "licensed-substitute",
+        "credit": "Ken Lund, CC BY-SA 2.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Misty_Sunset_over_Wasatch_Mountains,_U.S._Route_6,_Santaquin,_Utah.jpg"
+      }
     ],
     "christmas": [
-      { "src": "https://www.gran-turismo.com/images/c/i1CX8fcdBBRH0uH.jpg", "title": "Holiday Season Update key image (Lake Yamanaka)", "kind": "official-hotlink", "credit": "Polyphony Digital / Sony Interactive Entertainment, loaded from gran-turismo.com and not rehosted", "source": "https://www.gran-turismo.com/us/news/00_3777798.html" },
-      { "src": "img/backgrounds/paris_champs_elysees.jpg", "title": "Champs-Élysées, 27 December 2021", "kind": "licensed-substitute", "credit": "Pierre Blaché, CC0", "source": "https://commons.wikimedia.org/wiki/File:The_Avenue_des_Champs-%C3%89lys%C3%A9es_and_the_Arc_de_Triomphe,_Paris_27_December_2021.jpg" },
-      { "src": "img/backgrounds/paris_illuminations.jpg", "title": "Champs-Élysées illuminations", "kind": "licensed-substitute", "credit": "Dimitri Destugues, CC BY-SA 3.0", "source": "https://commons.wikimedia.org/wiki/File:Champs-Elys%C3%A9es-Illuminations.jpg" },
-      { "src": "img/backgrounds/paris_noel_2024.jpg", "title": "Champs-Élysées Christmas lights 2024", "kind": "licensed-substitute", "credit": "Tangopaso, public domain", "source": "https://commons.wikimedia.org/wiki/File:Illuminations_de_No%C3%ABl_2024_des_Champs-%C3%89lys%C3%A9es.jpg" }
+      {
+        "src": "https://www.gran-turismo.com/images/c/i1CX8fcdBBRH0uH.jpg",
+        "title": "Holiday Season Update key image (Lake Yamanaka)",
+        "kind": "official-hotlink",
+        "credit": "Polyphony Digital / Sony Interactive Entertainment, loaded from gran-turismo.com and not rehosted",
+        "source": "https://www.gran-turismo.com/us/news/00_3777798.html"
+      },
+      {
+        "src": "img/backgrounds/paris_champs_elysees.jpg",
+        "title": "Champs-Élysées, 27 December 2021",
+        "kind": "licensed-substitute",
+        "credit": "Pierre Blaché, CC0",
+        "source": "https://commons.wikimedia.org/wiki/File:The_Avenue_des_Champs-%C3%89lys%C3%A9es_and_the_Arc_de_Triomphe,_Paris_27_December_2021.jpg"
+      },
+      {
+        "src": "img/backgrounds/paris_illuminations.jpg",
+        "title": "Champs-Élysées illuminations",
+        "kind": "licensed-substitute",
+        "credit": "Dimitri Destugues, CC BY-SA 3.0",
+        "source": "https://commons.wikimedia.org/wiki/File:Champs-Elys%C3%A9es-Illuminations.jpg"
+      },
+      {
+        "src": "img/backgrounds/paris_noel_2024.jpg",
+        "title": "Champs-Élysées Christmas lights 2024",
+        "kind": "licensed-substitute",
+        "credit": "Tangopaso, public domain",
+        "source": "https://commons.wikimedia.org/wiki/File:Illuminations_de_No%C3%ABl_2024_des_Champs-%C3%89lys%C3%A9es.jpg"
+      }
     ],
-    "title": { "src": "https://www.gran-turismo.com/images/c/i1QKhRNFZCf14.jpg", "kind": "official-hotlink", "credit": "Polyphony Digital / Sony Interactive Entertainment, loaded from gran-turismo.com and not rehosted", "source": "https://www.gran-turismo.com/us/gtsport/news/00_1344615.html" }
+    "title": {
+      "src": "https://www.gran-turismo.com/images/c/i1QKhRNFZCf14.jpg",
+      "kind": "official-hotlink",
+      "credit": "Polyphony Digital / Sony Interactive Entertainment, loaded from gran-turismo.com and not rehosted",
+      "source": "https://www.gran-turismo.com/us/gtsport/news/00_1344615.html"
+    }
   },
   "news": {
-    "normal": { "tag": "Sport Mode", "headline": "36 Competitors from the 2020 Nations Cup Online Series Moving to the Online Regional Finals!", "date": "Oct 15th", "source": "Official Top Screen screenshot, https://www.gran-turismo.com/us/gtsport/manual/#!/top/content01" },
-    "christmas": { "tag": "Update", "headline": "Introducing the 'Gran Turismo Sport' Holiday Season Update", "date": "Dec 21st", "source": "https://www.gran-turismo.com/us/news/00_3777798.html" }
+    "normal": {
+      "tag": "Sport Mode",
+      "headline": "36 Competitors from the 2020 Nations Cup Online Series Moving to the Online Regional Finals!",
+      "date": "Oct 15th",
+      "source": "Official Top Screen screenshot, https://www.gran-turismo.com/us/gtsport/manual/#!/top/content01"
+    },
+    "christmas": {
+      "tag": "Update",
+      "headline": "Introducing the 'Gran Turismo Sport' Holiday Season Update",
+      "date": "Dec 21st",
+      "source": "https://www.gran-turismo.com/us/news/00_3777798.html"
+    }
   },
   "christmasMusic": {
-    "status": "partial",
-    "summary": "Update 1.10 (22 December 2017) added Christmas music to the main menu, and it came back each December. The in-game arrangements were never released commercially, so they play here as YouTube gameplay recordings of the actual menu.",
+    "summary": "Update 1.10 (22 December 2017) added Christmas music to the main menu, and it came back each December. The three Christmas tracks play from the archive.org fan upload listed below.",
     "reportedTitles": [
-      { "title": "Jingle Bells", "evidence": "GTPlanet, 2018-12-21: 'exited back to menus and, voila - Jingle Bells all the way'" },
-      { "title": "We Wish You a Merry Christmas", "evidence": "GTPlanet, 2018-12-21: 'it starts on We Wish You A Merry Christmas'" }
+      {
+        "title": "Jingle Bells",
+        "evidence": "GTPlanet, 2018-12-21: 'exited back to menus and, voila - Jingle Bells all the way'"
+      },
+      {
+        "title": "We Wish You a Merry Christmas",
+        "evidence": "GTPlanet, 2018-12-21: 'it starts on We Wish You A Merry Christmas'"
+      }
     ],
-    "gaps": "The full holiday playlist, composers and arrangers are not identified in any source checked. A 2022 GTPlanet post naming Jingle Bells, Silent Night and We Wish You a Merry Christmas is about GT7, so it is not counted here.",
-    "recordings": [
-      { "youtubeId": "lOvtBtK9qao", "title": "Christmas Songs in Gran Turismo Sport Menu (2019 Edition)", "channel": "MotoGamesTV", "published": "2019-12-20", "seconds": 685, "kind": "gameplay-recording" },
-      { "youtubeId": "UoXNN_68PFY", "title": "Christmas Songs in Gran Turismo Sport Menu (2020 Edition)", "channel": "MotoGamesTV", "published": "2020-12-21", "seconds": 680, "kind": "gameplay-recording" },
-      { "youtubeId": "nl7ByCCxGtE", "title": "Christmas Songs in Gran Turismo Sport Menu (2022 Edition)", "channel": "MotoGamesTV", "published": "2022-12-20", "seconds": 675, "kind": "gameplay-recording" }
-    ]
+    "gaps": "Arrangers are unidentified. Silent Night is in the archive upload but no dated GT Sport player report names it."
   },
   "menuMusic": {
-    "status": "community-reported",
-    "summary": "The menu BGM list comes from a GTPlanet community post (#134, 8 October 2017) that wrote down each title as it appeared in game. It is not an official list. Each track links to an official YouTube 'Topic' upload, where one could be matched automatically.",
-    "source": "https://www.gtplanet.net/forum/threads/gran-turismo-sport-confirmed-soundtracks-ost.346382/page-5",
-    "gaps": "Some tracks have no matching Topic upload and are listed but skipped in YouTube mode. Later updates also changed the menu music: GTPlanet reported GT2-era menu music in GT League (update 1.10) and players reported older GT tracks added later. That later music is not catalogued here."
+    "summary": "Menu tracks play natively from an anonymous archive.org fan upload, 'Gran Turismo Complete Soundtrack', streamed straight from archive.org's per-file links. Nothing is rehosted here. Embedded ID3 comments point to the Sitting on Clouds fan OST site. Licensing is not stated by the uploader.",
+    "listSource": "https://www.gtplanet.net/forum/threads/gran-turismo-sport-confirmed-soundtracks-ost.346382/page-5",
+    "gaps": "Four tracks from the GTPlanet community menu list are not in the upload and are not played. Post-launch menu additions (GT League and legacy GT tracks) are not included."
   }
 }

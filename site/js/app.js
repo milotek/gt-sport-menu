@@ -5,14 +5,15 @@ import { addFiles, listFiles, clearFiles, folderManifest } from "./local_media.j
 const $ = (s) => document.querySelector(s);
 const SLIDE_MS = 20000;
 const prefs = Object.assign(
-  { season: "auto", source: "youtube", volume: 60, slideshow: true },
+  { season: "auto", source: "soundtrack", volume: 60, slideshow: true },
   JSON.parse(localStorage.getItem("gt-sport-menu") || "{}"),
 );
+if (prefs.source === "youtube") prefs.source = "soundtrack";
 const savePrefs = () => localStorage.setItem("gt-sport-menu", JSON.stringify(prefs));
 
-const [catalog, menuTracks] = await Promise.all([
+const [catalog, soundtrack] = await Promise.all([
   fetch("data/catalog.json").then((r) => r.json()),
-  fetch("data/menu_tracks.json").then((r) => r.json()),
+  fetch("data/soundtrack.json").then((r) => r.json()),
 ]);
 
 const now = () => (window.__gtNow ? new Date(window.__gtNow) : new Date());
@@ -76,22 +77,24 @@ function applyBackgrounds() {
 }
 
 function musicTracks(source) {
+  if (source === "off") return [];
   if (source === "local") {
     const mine = userAudio.filter(inSeason);
     return mine.length ? mine : userAudio;
   }
-  if (season === "christmas") {
-    return catalog.christmasMusic.recordings.map((r) => ({
-      ...r,
-      artist: `GT Sport Christmas menu · recording by ${r.channel}`,
-    }));
+  return soundtrack.tracks.filter((t) => t.season === season);
+}
+
+function playMusic() {
+  if (prefs.source === "off") {
+    music.stop();
+    music.onTrack(null);
+    return music.onStatus("Music off", false);
   }
-  return menuTracks.filter((t) => t.youtubeId);
+  return music.use(musicTracks(prefs.source), prefs.source === "local" ? "No audio files added yet" : undefined);
 }
 
 const music = new Music({
-  dock: $("#player-dock"),
-  mount: "yt-player",
   onTrack: (t) => {
     $("#track-title").textContent = t ? t.title : "-";
     $("#track-artist").textContent = t ? t.artist : "";
@@ -138,7 +141,7 @@ function tick() {
   $("#feed-date").textContent = `${d.getMonth() + 1}/${d.getDate()}/${d.getFullYear()} ${String(d.getHours()).padStart(2, "0")}:${String(d.getMinutes()).padStart(2, "0")}`;
   if (prefs.season === "auto" && resolveSeason("auto", d, catalog.christmasWindow) !== season) {
     applySeason();
-    music.use(prefs.source, musicTracks(prefs.source));
+    playMusic();
   }
 }
 
@@ -147,12 +150,11 @@ async function loadUserMedia() {
   const audio = await listFiles("audio");
   const images = await listFiles("image");
   for (const u of [...userAudio, ...userImages]) {
-    const url = u.url ?? u.src;
-    if (url.startsWith("blob:")) URL.revokeObjectURL(url);
+    if (u.src.startsWith("blob:")) URL.revokeObjectURL(u.src);
   }
   userAudio = [
-    ...manifest.audio.map((a) => ({ ...a, url: `media/local/${a.file}` })),
-    ...audio.map((f) => ({ title: f.name.replace(/\.[^.]+$/, ""), artist: "Your file", url: URL.createObjectURL(f.blob) })),
+    ...manifest.audio.map((a) => ({ ...a, src: `media/local/${a.file}` })),
+    ...audio.map((f) => ({ title: f.name.replace(/\.[^.]+$/, ""), artist: "Your file", src: URL.createObjectURL(f.blob) })),
   ];
   userImages = [
     ...manifest.images.map((i) => ({ src: `media/local/${i.file}`, title: i.title || i.file, season: i.season, kind: "user", credit: "local folder" })),
@@ -228,7 +230,7 @@ function wireSettings() {
       prefs.season = r.value;
       savePrefs();
       applySeason();
-      if (prefs.source === "youtube") music.use("youtube", musicTracks("youtube"));
+      if (prefs.source === "soundtrack") playMusic();
     });
   }
   for (const r of document.querySelectorAll('input[name="source"]')) {
@@ -236,7 +238,7 @@ function wireSettings() {
     r.addEventListener("change", () => {
       prefs.source = r.value;
       savePrefs();
-      music.use(prefs.source, musicTracks(prefs.source));
+      playMusic();
     });
   }
   const vol = $("#volume");
@@ -259,7 +261,7 @@ function wireSettings() {
     await addFiles("audio", e.target.files);
     e.target.value = "";
     await loadUserMedia();
-    if (prefs.source === "local") music.use("local", musicTracks("local"));
+    if (prefs.source === "local") playMusic();
   });
   $("#local-images").addEventListener("change", async (e) => {
     await addFiles("image", e.target.files);
@@ -271,7 +273,7 @@ function wireSettings() {
     await clearFiles();
     await loadUserMedia();
     applyBackgrounds();
-    if (prefs.source === "local") music.use("local", musicTracks("local"));
+    if (prefs.source === "local") playMusic();
   });
   $("#fullscreen").addEventListener("click", toggleFullscreen);
   $("#settings-toggle").addEventListener("click", () => toggleSettings());
@@ -332,7 +334,7 @@ async function enter() {
   wireMenu();
   navItems()[1]?.focus({ preventScroll: true });
   music.setVolume(prefs.volume);
-  await music.use(prefs.source, musicTracks(prefs.source));
+  await playMusic();
 }
 
 wireSettings();
