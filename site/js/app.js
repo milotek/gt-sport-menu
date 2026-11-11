@@ -3,18 +3,35 @@ import { Music } from "./music.js";
 import { addFiles, listFiles, clearFiles, folderManifest } from "./local_media.js";
 
 const $ = (s) => document.querySelector(s);
-const SLIDE_MS = 20000;
-const prefs = Object.assign(
-  { season: "auto", source: "soundtrack", volume: 60, slideshow: true },
-  JSON.parse(localStorage.getItem("gt-sport-menu") || "{}"),
-);
+const PREFS_KEY = "gt-sport-menu";
+const DEFAULTS = {
+  season: "auto",
+  source: "soundtrack",
+  volume: 60,
+  slideshow: true,
+  slideInterval: 20,
+  motion: true,
+  order: "shuffle",
+  repeat: false,
+  extended: false,
+  packs: ["gtsport"],
+  xmasMix: "holiday",
+  favoritesOnly: false,
+  favorites: [],
+  ambienceIdle: 0,
+};
+const prefs = Object.assign(structuredClone(DEFAULTS), JSON.parse(localStorage.getItem(PREFS_KEY) || "{}"));
 if (prefs.source === "youtube") prefs.source = "soundtrack";
-const savePrefs = () => localStorage.setItem("gt-sport-menu", JSON.stringify(prefs));
+const savePrefs = () => localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
+const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
 
-const [catalog, soundtrack] = await Promise.all([
+const [catalog, soundtrack, extended] = await Promise.all([
   fetch("data/catalog.json").then((r) => r.json()),
   fetch("data/soundtrack.json").then((r) => r.json()),
+  fetch("data/extended.json").then((r) => r.json()),
 ]);
+const allTracks = [...soundtrack.tracks, ...extended.tracks];
+const gameLabel = (t) => extended.packs[t.game]?.label;
 
 const now = () => (window.__gtNow ? new Date(window.__gtNow) : new Date());
 let season = resolveSeason(prefs.season, now(), catalog.christmasWindow);
@@ -26,6 +43,7 @@ let front = 0;
 let slides = [];
 let slideIndex = 0;
 let slideTimer;
+const slideMs = () => prefs.slideInterval * 1000;
 
 function preload(src) {
   return new Promise((resolve, reject) => {
@@ -52,7 +70,7 @@ async function showSlide(i) {
     layer.dataset.src = s.src;
     layer.classList.remove("pan", "alt");
     void layer.offsetWidth;
-    layer.style.setProperty("--pan-duration", `${SLIDE_MS / 1000 + 4}s`);
+    layer.style.setProperty("--pan-duration", `${slideMs() / 1000 + 4}s`);
     layer.classList.add("on", "pan");
     layer.classList.toggle("alt", slideIndex % 2 === 1);
     back.classList.remove("on");
@@ -63,7 +81,7 @@ async function showSlide(i) {
 
 function scheduleSlides() {
   clearInterval(slideTimer);
-  if (prefs.slideshow && slides.length > 1) slideTimer = setInterval(() => showSlide(slideIndex + 1), SLIDE_MS);
+  if (prefs.slideshow && slides.length > 1) slideTimer = setInterval(() => showSlide(slideIndex + 1), slideMs());
 }
 
 const inSeason = (m) => !m.season || m.season === "any" || m.season === season;
@@ -76,16 +94,37 @@ function applyBackgrounds() {
   scheduleSlides();
 }
 
+function soundtrackPool() {
+  const packs = prefs.extended && prefs.packs.length ? prefs.packs : ["gtsport"];
+  const ofPacks = (s) => allTracks.filter((t) => packs.includes(t.game) && t.season === s);
+  let tracks = ofPacks(season);
+  let note = "";
+  if (season === "christmas") {
+    if (prefs.extended && prefs.xmasMix === "all") tracks = [...tracks, ...ofPacks("normal")];
+    else if (!tracks.length) {
+      tracks = soundtrack.tracks.filter((t) => t.season === "christmas");
+      note = "The selected packs have no holiday tracks, so GT Sport's Christmas music plays.";
+    }
+  }
+  if (prefs.favoritesOnly) {
+    const favs = tracks.filter((t) => prefs.favorites.includes(t.id));
+    if (favs.length) tracks = favs;
+    else note = "No favourites in this playlist yet, so everything plays.";
+  }
+  return { tracks, note };
+}
+
 function musicTracks(source) {
   if (source === "off") return [];
   if (source === "local") {
     const mine = userAudio.filter(inSeason);
     return mine.length ? mine : userAudio;
   }
-  return soundtrack.tracks.filter((t) => t.season === season);
+  return soundtrackPool().tracks;
 }
 
 function playMusic() {
+  renderPool();
   if (prefs.source === "off") {
     music.stop();
     music.onTrack(null);
@@ -94,10 +133,20 @@ function playMusic() {
   return music.use(musicTracks(prefs.source), prefs.source === "local" ? "No audio files added yet" : undefined);
 }
 
+function refreshPool() {
+  const tracks = musicTracks(prefs.source);
+  renderPool();
+  if (music.track && tracks.some((t) => t.src === music.track.src)) music.reorder(tracks);
+  else if (!$("#top-screen").hidden) playMusic();
+}
+
+const credit = (t) => (gameLabel(t) ? `${t.artist} · ${gameLabel(t)}` : t.artist);
+
 const music = new Music({
   onTrack: (t) => {
     $("#track-title").textContent = t ? t.title : "-";
-    $("#track-artist").textContent = t ? t.artist : "";
+    $("#track-artist").textContent = t ? credit(t) : "";
+    for (const li of document.querySelectorAll("#track-list li")) li.classList.toggle("current", li.dataset.src === t?.src);
   },
   onStatus: (text, playing) => {
     $("#track-status").textContent = text;
@@ -111,11 +160,61 @@ let announced;
 function announce(t) {
   announced = t;
   $("#np-title").textContent = t.title;
-  $("#np-artist").textContent = t.artist;
+  $("#np-artist").textContent = credit(t);
   const np = $("#now-playing");
   np.classList.add("show");
   clearTimeout(npTimer);
   npTimer = setTimeout(() => np.classList.remove("show"), 6000);
+}
+
+function renderPool() {
+  const { tracks, note } = soundtrackPool();
+  const counts = Object.entries(extended.packs)
+    .map(([id, p]) => [p.label, tracks.filter((t) => t.game === id).length])
+    .filter(([, n]) => n)
+    .map(([label, n]) => `${label} ${n}`)
+    .join(", ");
+  $("#pool-hint").textContent = `${season === "christmas" ? "Christmas" : "Normal"} playlist: ${counts || "empty"}.${note ? ` ${note}` : ""}`;
+  const q = $("#track-search").value.trim().toLowerCase();
+  const list = prefs.favoritesOnly ? tracks.filter((t) => prefs.favorites.includes(t.id)) : tracks;
+  const shown = list.filter((t) => !q || `${t.title} ${t.artist} ${gameLabel(t)}`.toLowerCase().includes(q));
+  $("#track-list").replaceChildren(
+    ...shown.map((t) => {
+      const li = document.createElement("li");
+      li.dataset.src = t.src;
+      li.classList.toggle("current", music.track?.src === t.src);
+      const play = document.createElement("button");
+      play.type = "button";
+      play.className = "pick";
+      play.innerHTML = `<b></b><small></small><span class="game"></span>`;
+      play.querySelector("b").textContent = t.title;
+      play.querySelector("small").textContent = t.artist;
+      play.querySelector(".game").textContent = gameLabel(t);
+      play.addEventListener("click", () => {
+        if (prefs.source !== "soundtrack") {
+          prefs.source = "soundtrack";
+          savePrefs();
+          document.querySelector('input[name="source"][value="soundtrack"]').checked = true;
+          music.use(musicTracks("soundtrack")).then(() => music.playTrack(t));
+        } else music.playTrack(t);
+      });
+      const fav = document.createElement("button");
+      fav.type = "button";
+      fav.className = "fav";
+      const on = prefs.favorites.includes(t.id);
+      fav.setAttribute("aria-pressed", String(on));
+      fav.setAttribute("aria-label", `${on ? "Remove" : "Add"} ${t.title} ${on ? "from" : "to"} favourites`);
+      fav.innerHTML = `<i class="ti ti-star"></i>`;
+      fav.addEventListener("click", () => {
+        prefs.favorites = on ? prefs.favorites.filter((id) => id !== t.id) : [...prefs.favorites, t.id];
+        savePrefs();
+        if (prefs.favoritesOnly) refreshPool();
+        else renderPool();
+      });
+      li.append(play, fav);
+      return li;
+    }),
+  );
 }
 
 function applySeason() {
@@ -133,6 +232,14 @@ function applySeason() {
   $("#news-headline").textContent = news.headline;
   $("#news-date").textContent = news.date;
   applyBackgrounds();
+}
+
+function applyMotion() {
+  const still = !prefs.motion || reducedMotion.matches;
+  document.body.classList.toggle("still", still);
+  $("#motion").checked = prefs.motion && !reducedMotion.matches;
+  $("#motion").disabled = reducedMotion.matches;
+  $("#motion-hint").textContent = reducedMotion.matches ? "Your system asks for reduced motion, so backgrounds stay still." : "";
 }
 
 function tick() {
@@ -223,9 +330,88 @@ function toggleFullscreen() {
   else document.documentElement.requestFullscreen?.().catch(() => {});
 }
 
+let ambient = false;
+let idleTimer;
+let hintTimer;
+let ambientSince = 0;
+let ambientOrigin;
+
+function enterAmbience() {
+  if (ambient || $("#top-screen").hidden) return;
+  ambient = true;
+  ambientSince = performance.now();
+  ambientOrigin = undefined;
+  toggleSettings(false);
+  balloonFor(null);
+  document.body.classList.add("ambient");
+  const hint = $("#ambience-hint");
+  hint.hidden = false;
+  clearTimeout(hintTimer);
+  hintTimer = setTimeout(() => (hint.hidden = true), 3000);
+}
+
+function exitAmbience() {
+  if (!ambient) return;
+  ambient = false;
+  document.body.classList.remove("ambient");
+  $("#ambience-hint").hidden = true;
+}
+
+function activity(e) {
+  if (ambient) {
+    if (performance.now() - ambientSince < 500) return;
+    if (e.type === "pointermove") {
+      ambientOrigin ??= [e.clientX, e.clientY];
+      if (Math.hypot(e.clientX - ambientOrigin[0], e.clientY - ambientOrigin[1]) < 16) return;
+    }
+    if (e.type === "keydown") e.preventDefault();
+    exitAmbience();
+    e.stopImmediatePropagation();
+  }
+  clearTimeout(idleTimer);
+  if (prefs.ambienceIdle > 0) idleTimer = setTimeout(enterAmbience, prefs.ambienceIdle * 1000);
+}
+
+for (const type of ["pointermove", "pointerdown", "keydown", "touchstart", "wheel"]) {
+  document.addEventListener(type, activity, { capture: true, passive: type !== "keydown" });
+}
+
+function syncControls() {
+  for (const r of document.querySelectorAll('input[name="season"]')) r.checked = r.value === prefs.season;
+  for (const r of document.querySelectorAll('input[name="source"]')) r.checked = r.value === prefs.source;
+  for (const r of document.querySelectorAll('input[name="order"]')) r.checked = r.value === prefs.order;
+  for (const r of document.querySelectorAll('input[name="xmas-mix"]')) r.checked = r.value === prefs.xmasMix;
+  for (const c of document.querySelectorAll("#packs input")) c.checked = prefs.packs.includes(c.value);
+  $("#volume").value = prefs.volume;
+  $("#slideshow").checked = prefs.slideshow;
+  $("#slide-interval").value = String(prefs.slideInterval);
+  $("#ambience-idle").value = String(prefs.ambienceIdle);
+  $("#repeat").checked = prefs.repeat;
+  $("#extended").checked = prefs.extended;
+  $("#favorites-only").checked = prefs.favoritesOnly;
+  document.querySelector("#extended-section").classList.toggle("off", !prefs.extended);
+  music.shuffle = prefs.order === "shuffle";
+  music.setRepeat(prefs.repeat);
+  applyMotion();
+}
+
 function wireSettings() {
+  $("#packs").replaceChildren(
+    ...Object.entries(extended.packs).map(([id, p]) => {
+      const label = document.createElement("label");
+      label.className = "check";
+      const n = allTracks.filter((t) => t.game === id).length;
+      label.innerHTML = `<input type="checkbox" value="${id}"><span></span>`;
+      label.querySelector("span").textContent = `${p.label} (${p.year}) · ${n} tracks`;
+      label.querySelector("input").addEventListener("change", () => {
+        prefs.packs = [...document.querySelectorAll("#packs input:checked")].map((c) => c.value);
+        savePrefs();
+        refreshPool();
+      });
+      return label;
+    }),
+  );
   for (const r of document.querySelectorAll('input[name="season"]')) {
-    r.checked = r.value === prefs.season;
     r.addEventListener("change", () => {
       prefs.season = r.value;
       savePrefs();
@@ -234,25 +420,78 @@ function wireSettings() {
     });
   }
   for (const r of document.querySelectorAll('input[name="source"]')) {
-    r.checked = r.value === prefs.source;
     r.addEventListener("change", () => {
       prefs.source = r.value;
       savePrefs();
       playMusic();
     });
   }
-  const vol = $("#volume");
-  vol.value = prefs.volume;
-  vol.addEventListener("input", () => {
-    prefs.volume = Number(vol.value);
+  for (const r of document.querySelectorAll('input[name="order"]')) {
+    r.addEventListener("change", () => {
+      prefs.order = r.value;
+      savePrefs();
+      music.shuffle = prefs.order === "shuffle";
+      if (music.track) music.reorder(musicTracks(prefs.source));
+    });
+  }
+  for (const r of document.querySelectorAll('input[name="xmas-mix"]')) {
+    r.addEventListener("change", () => {
+      prefs.xmasMix = r.value;
+      savePrefs();
+      refreshPool();
+    });
+  }
+  $("#extended").addEventListener("change", (e) => {
+    prefs.extended = e.target.checked;
+    savePrefs();
+    document.querySelector("#extended-section").classList.toggle("off", !prefs.extended);
+    refreshPool();
+  });
+  $("#repeat").addEventListener("change", (e) => {
+    prefs.repeat = e.target.checked;
+    savePrefs();
+    music.setRepeat(prefs.repeat);
+  });
+  $("#favorites-only").addEventListener("change", (e) => {
+    prefs.favoritesOnly = e.target.checked;
+    savePrefs();
+    refreshPool();
+  });
+  $("#track-search").addEventListener("input", renderPool);
+  $("#volume").addEventListener("input", (e) => {
+    prefs.volume = Number(e.target.value);
     savePrefs();
     music.setVolume(prefs.volume);
   });
-  $("#slideshow").checked = prefs.slideshow;
   $("#slideshow").addEventListener("change", (e) => {
     prefs.slideshow = e.target.checked;
     savePrefs();
     scheduleSlides();
+  });
+  $("#slide-interval").addEventListener("change", (e) => {
+    prefs.slideInterval = Number(e.target.value);
+    savePrefs();
+    scheduleSlides();
+  });
+  $("#motion").addEventListener("change", (e) => {
+    prefs.motion = e.target.checked;
+    savePrefs();
+    applyMotion();
+  });
+  reducedMotion.addEventListener("change", applyMotion);
+  $("#ambience-idle").addEventListener("change", (e) => {
+    prefs.ambienceIdle = Number(e.target.value);
+    savePrefs();
+    activity(e);
+  });
+  $("#ambience-now").addEventListener("click", enterAmbience);
+  $("#reset-settings").addEventListener("click", () => {
+    localStorage.removeItem(PREFS_KEY);
+    Object.assign(prefs, structuredClone(DEFAULTS));
+    syncControls();
+    applySeason();
+    music.setVolume(prefs.volume);
+    if (!$("#top-screen").hidden) playMusic();
   });
   $("#play").addEventListener("click", () => music.toggle());
   $("#next").addEventListener("click", () => music.next());
@@ -277,6 +516,7 @@ function wireSettings() {
   });
   $("#fullscreen").addEventListener("click", toggleFullscreen);
   $("#settings-toggle").addEventListener("click", () => toggleSettings());
+  syncControls();
 }
 
 function wireMenu() {
@@ -286,14 +526,16 @@ function wireMenu() {
     el.addEventListener("focus", () => balloonFor(el));
     el.addEventListener("blur", () => balloonFor(null));
     el.addEventListener("click", () => {
+      if (el.id === "gt-menu") return toggleSettings(true);
       const label = el.querySelector("span")?.textContent || el.dataset.balloon || "This feature";
       showToast(label);
     });
   }
   document.addEventListener("keydown", (e) => {
-    if ($("#top-screen").hidden || e.target.matches("input[type=range], input[type=file]")) return;
+    if ($("#top-screen").hidden || e.target.matches("input[type=range], input[type=file], input[type=search], select")) return;
     const inSettings = !$("#settings").hidden && $("#settings").contains(e.target);
     const dirs = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] };
+    const key = e.ctrlKey || e.metaKey || e.altKey ? "" : e.key.toLowerCase();
     if (dirs[e.key] && !inSettings) {
       e.preventDefault();
       moveFocus(...dirs[e.key]);
@@ -303,9 +545,10 @@ function wireMenu() {
         toggleSettings(false);
         $("#settings-toggle").focus();
       }
-    } else if (e.key.toLowerCase() === "s" && !e.ctrlKey && !e.metaKey) toggleSettings();
-    else if (e.key.toLowerCase() === "f" && !e.ctrlKey && !e.metaKey) toggleFullscreen();
-    else if (e.key.toLowerCase() === "n" && !e.ctrlKey && !e.metaKey) music.next();
+    } else if (key === "s") toggleSettings();
+    else if (key === "f") toggleFullscreen();
+    else if (key === "n") music.next();
+    else if (key === "a") enterAmbience();
     else if (e.key === " " && !e.target.matches("button, input")) {
       e.preventDefault();
       music.toggle();

@@ -31,6 +31,9 @@
     <h2>Menu music</h2>
     <div id="menu"></div>
 
+    <h2>Extended music (opt-in)</h2>
+    <div id="extended"></div>
+
     <h2>Backgrounds</h2>
     <div id="backgrounds"></div>
 
@@ -39,11 +42,11 @@
   </main>
   <script type="module">
     const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
-    const [c, st] = await Promise.all([fetch("data/catalog.json").then((r) => r.json()), fetch("data/soundtrack.json").then((r) => r.json())]);
+    const [c, st, ex] = await Promise.all([fetch("data/catalog.json").then((r) => r.json()), fetch("data/soundtrack.json").then((r) => r.json()), fetch("data/extended.json").then((r) => r.json())]);
     const w = c.christmasWindow;
     const x = c.christmasMusic;
     const rows = (list) => `<table><tr><th>Artist</th><th>Title</th><th>Length</th><th>Source</th></tr>
-      ${list.map((t) => `<tr><td>${esc(t.artist)}</td><td>${esc(t.title)}</td><td>${Math.floor(t.seconds / 60)}:${String(t.seconds % 60).padStart(2, "0")}</td><td><a href="${esc(t.src)}">${esc(t.origin)}</a></td></tr>`).join("")}</table>`;
+      ${list.map((t) => `<tr><td>${esc(t.artist)}</td><td>${esc(t.title)}</td><td>${t.seconds ? `${Math.floor(t.seconds / 60)}:${String(t.seconds % 60).padStart(2, "0")}` : "-"}</td><td><a href="${esc(t.src)}">${esc(t.origin)}</a></td></tr>`).join("")}</table>`;
     const menu = st.tracks.filter((t) => t.season === "normal");
     const xmas = st.tracks.filter((t) => t.season === "christmas");
     document.querySelector("#christmas").innerHTML = `
@@ -61,6 +64,15 @@
       <p class="gap">${esc(c.menuMusic.gaps)}</p>
       <ul>${st.missing.map((m) => `<li class="gap">${esc(m)}</li>`).join("")}</ul>
       ${rows(menu)}`;
+    const pack = (id) => ex.tracks.filter((t) => t.game === id);
+    document.querySelector("#extended").innerHTML = `
+      <p>Off by default. These packs stream from the same archive.org upload (<a href="${esc(ex.source)}">${esc(ex.source)}</a>). Only menu music is included, and neither pack has holiday tracks.</p>
+      <h3>GT4 (2004): ${pack("gt4").length} tracks</h3>
+      <p class="muted">${esc(pack("gt4")[0]?.basis)} Excluded: ${ex.excluded.gt4.map(esc).join(", ")}.</p>
+      ${rows(pack("gt4"))}
+      <h3>GT7 (2022): ${pack("gt7").length} tracks</h3>
+      <p class="muted">${esc(pack("gt7")[0]?.basis)}. Excluded ${ex.excluded.gt7.length} other files in the GT7 folder: race and dual-use tracks, untagged tracks, and files whose tags say they were ripped from GT5 releases.</p>
+      ${rows(pack("gt7"))}`;
     const bg = (list, label) => `<h3>${label}</h3><table><tr><th>Image</th><th>Type</th><th>Credit</th></tr>
       ${list.map((b) => `<tr><td><a href="${esc(b.source)}">${esc(b.title ?? "Title screen")}</a></td><td>${b.kind === "official-hotlink" ? "official, hotlinked" : "substitute"}<br><span class="muted">${esc(new URL(b.src).hostname)}</span></td><td class="muted">${esc(b.credit)}</td></tr>`).join("")}</table>`;
     document.querySelector("#backgrounds").innerHTML = `

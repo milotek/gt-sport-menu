@@ -20,16 +20,21 @@ Set `CHROME_PATH` if Chrome is not at the NixOS profile path in `playwright.conf
 
 Press Enter or click on the title screen to start.
 Starting needs a gesture because browsers block audio until the user interacts.
+The GT Menu button (top left) or the sliders icon opens Options.
 
 | Key | Action |
 | --- | --- |
 | Arrow keys | Move focus around the menu |
 | Enter | Select |
-| S | Settings |
+| S | Options |
 | F | Fullscreen |
 | N | Next track |
+| A | Ambience mode (any key, tap or pointer movement returns) |
 | Space | Play or pause |
 | Esc | Close panels |
+
+Options also cover play order, repeat, a searchable track browser with favourites, slideshow interval, background motion (always off when the system asks for reduced motion), idle ambience and Reset options.
+Reset options leaves imported files alone; "Remove my files" deletes them.
 
 ## Seasons
 
@@ -47,6 +52,12 @@ No audio is bundled in this repo.
 - **Soundtrack:** `site/data/soundtrack.json` lists 62 menu tracks and 3 Christmas tracks. Each `src` points straight at a per-file link inside the anonymous archive.org upload [Gran Turismo Complete Soundtrack](https://archive.org/details/gran-turismo-complete-soundtrack), so the browser streams from archive.org. The uploader states no licence.
 - **Missing:** four tracks from the GTPlanet community menu list are not in that upload and are listed in the manifest's `missing` field.
 - **My files:** add audio in Settings. Files are stored in IndexedDB and stay in this browser.
+
+**Extended music** (Options > Extended music, off by default) adds opt-in packs from the same archive.org upload, built by `tools/build_extended_packs.py` into `site/data/extended.json`:
+
+- **GT4:** 10 Isamu Ohira tracks from the GT4 Original Game Soundtrack. Ohira is credited as GT4's menu composer. The opening theme, the fusion-rock tracks and the vocal race tracks are excluded.
+- **GT7:** 75 tracks whose ID3 album is "Gran Turismo 7 OST" and which the vgost.fandom.com GT7 table marks as Default BGM "Menu". Race, dual-use, untagged and GT5-tagged files are excluded.
+- Neither pack has holiday tracks. In Christmas season, extended music stays holiday-only unless "Christmas: mix all" is chosen.
 
 To swap in your own recordings, such as MIDI remakes, put them under `site/media/` and change each track's `src` to the relative path.
 Anything else in the entry (title, artist, season) drives the playlists and the now-playing banner.

@@ -15,6 +15,7 @@ def main(report_path):
             continue
         tracks.append({
             "id": Path(f["relative_path"]).stem,
+            "game": "gtsport",
             "season": season,
             "title": f["title"],
             "artist": f["id3"].get("artist") or "Gran Turismo Sport",

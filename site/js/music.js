@@ -25,6 +25,7 @@ export class Music {
     });
     this.audio.addEventListener("pause", () => !this.audio.ended && !this.audio.error && this.onStatus("Paused", false));
     this.volume = 60;
+    this.shuffle = true;
     this.queue = [];
     this.index = 0;
     this.failures = 0;
@@ -40,7 +41,7 @@ export class Music {
 
   async use(tracks, emptyMessage = "No tracks to play") {
     this.stop();
-    this.queue = shuffle(tracks);
+    this.queue = this.shuffle ? shuffle(tracks) : [...tracks];
     this.index = 0;
     this.failures = 0;
     if (!this.queue.length) {
@@ -65,6 +66,28 @@ export class Music {
       if (e.name === "NotAllowedError") this.onStatus("The browser blocked playback. Press play.", false);
       else if (e.name !== "AbortError" && e.name !== "NotSupportedError") this.onStatus("This track could not be played", false);
     }
+  }
+
+  async playTrack(track) {
+    let i = this.queue.findIndex((t) => t.src === track.src);
+    if (i < 0) {
+      this.queue.splice(this.index + 1, 0, track);
+      i = this.queue.length === 1 ? 0 : this.index + 1;
+    }
+    this.index = i;
+    await this.play();
+  }
+
+  reorder(tracks) {
+    const current = this.track;
+    this.queue = this.shuffle ? shuffle(tracks) : [...tracks];
+    const i = this.queue.findIndex((t) => t.src === current?.src);
+    if (i > 0 && this.shuffle) this.queue.unshift(...this.queue.splice(i, 1));
+    this.index = this.shuffle ? 0 : Math.max(i, 0);
+  }
+
+  setRepeat(on) {
+    this.audio.loop = on;
   }
 
   skipBroken(reason) {

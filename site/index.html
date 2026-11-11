@@ -33,7 +33,7 @@
 
     <main id="top-screen" class="top-screen" hidden>
       <header class="top-bar">
-        <button class="gt-menu nav" type="button" data-balloon="GT Menu" data-group="top">
+        <button id="gt-menu" class="gt-menu nav" type="button" data-balloon="GT Menu: Options" data-group="top">
           <span class="gt-glyph" aria-hidden="true">GT</span>
         </button>
         <nav class="modes" aria-label="Modes">
@@ -123,12 +123,12 @@
       <div id="toast" class="toast" role="status" hidden></div>
     </main>
 
-    <button id="settings-toggle" class="settings-toggle" type="button" aria-controls="settings" aria-expanded="false" title="Settings (S)" hidden>
+    <button id="settings-toggle" class="settings-toggle" type="button" aria-controls="settings" aria-expanded="false" title="Options (S)" aria-label="Options" hidden>
       <i class="ti ti-adjustments-horizontal"></i>
     </button>
 
-    <section id="settings" class="settings" aria-label="Settings" hidden>
-      <h2>Settings</h2>
+    <section id="settings" class="settings" aria-label="Options" hidden>
+      <h2>Options</h2>
 
       <fieldset>
         <legend>Season</legend>
@@ -158,6 +158,13 @@
           <button id="next" type="button" title="Next (N)"><i class="ti ti-player-skip-forward"></i></button>
           <input id="volume" type="range" min="0" max="100" value="60" aria-label="Volume">
         </div>
+        <div class="row">
+          <div class="seg compact" role="radiogroup" aria-label="Play order">
+            <label><input type="radio" name="order" value="shuffle" checked><span><i class="ti ti-arrows-shuffle"></i> Shuffle</span></label>
+            <label><input type="radio" name="order" value="sequential"><span><i class="ti ti-arrow-right"></i> In order</span></label>
+          </div>
+          <label class="check"><input id="repeat" type="checkbox"><span>Repeat track</span></label>
+        </div>
         <label class="file-pick">
           <input id="local-files" type="file" accept="audio/*" multiple>
           <span><i class="ti ti-folder-plus"></i> Add audio files</span>
@@ -165,22 +172,63 @@
         <p class="hint" id="local-count"></p>
       </fieldset>
 
-      <fieldset>
-        <legend>Backgrounds</legend>
+      <details id="extended-section">
+        <summary>Extended music</summary>
+        <label class="check"><input id="extended" type="checkbox"><span>Add music from other GT games</span></label>
+        <div class="packs" id="packs"></div>
+        <div class="seg compact" role="radiogroup" aria-label="Christmas with extended music">
+          <label><input type="radio" name="xmas-mix" value="holiday" checked><span>Christmas: holiday only</span></label>
+          <label><input type="radio" name="xmas-mix" value="all"><span>Christmas: mix all</span></label>
+        </div>
+        <p class="hint" id="pool-hint"></p>
+      </details>
+
+      <details id="browser-section">
+        <summary>Track browser</summary>
+        <div class="row">
+          <input id="track-search" type="search" placeholder="Search title, artist or game" aria-label="Search tracks">
+          <label class="check"><input id="favorites-only" type="checkbox"><span>Favourites only</span></label>
+        </div>
+        <ol id="track-list" class="track-list"></ol>
+      </details>
+
+      <details id="display-section">
+        <summary>Display</summary>
         <label class="check"><input id="slideshow" type="checkbox" checked><span>Slideshow</span></label>
+        <label class="field">Change every
+          <select id="slide-interval">
+            <option value="10">10 s</option>
+            <option value="20">20 s</option>
+            <option value="40">40 s</option>
+            <option value="60">60 s</option>
+          </select>
+        </label>
+        <label class="check"><input id="motion" type="checkbox" checked><span>Background motion</span></label>
+        <label class="field">Ambience after
+          <select id="ambience-idle">
+            <option value="0">Never</option>
+            <option value="60">1 min idle</option>
+            <option value="300">5 min idle</option>
+          </select>
+        </label>
+        <button id="ambience-now" type="button" class="wide"><i class="ti ti-eye-off"></i> Ambience mode now (A)</button>
         <label class="file-pick">
           <input id="local-images" type="file" accept="image/*" multiple>
           <span><i class="ti ti-photo-plus"></i> Add background images</span>
         </label>
+        <p class="hint" id="motion-hint"></p>
         <p class="hint" id="bg-credit"></p>
-      </fieldset>
+      </details>
 
       <div class="settings-foot">
+        <button id="reset-settings" type="button"><i class="ti ti-restore"></i> Reset options</button>
         <button id="clear-local" type="button">Remove my files</button>
         <button id="fullscreen" type="button"><i class="ti ti-maximize"></i> Fullscreen (F)</button>
         <a href="credits.html" target="_blank" rel="noopener">Sources &amp; credits</a>
       </div>
     </section>
+
+    <div id="ambience-hint" class="ambience-hint" hidden>Move, tap or press any key to return</div>
   </div>
 </body>
 </html>

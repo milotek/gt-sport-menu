@@ -953,6 +953,243 @@ button {
   margin-left: auto;
 }
 
+.settings details {
+  margin: 0 0 0.75rem;
+  border-top: 0.0625rem solid var(--line);
+}
+
+.settings summary {
+  padding: 0.75rem 0;
+  font-size: 0.75rem;
+  letter-spacing: 0.1rem;
+  text-transform: uppercase;
+  color: var(--dim);
+  cursor: pointer;
+  list-style: none;
+}
+
+.settings summary::-webkit-details-marker {
+  display: none;
+}
+
+.settings summary::after {
+  content: "+";
+  float: right;
+  font-size: 1rem;
+  line-height: 1;
+}
+
+.settings details[open] summary::after {
+  content: "−";
+}
+
+.settings summary:focus-visible {
+  outline: 0.125rem solid var(--focus);
+  outline-offset: 0.125rem;
+}
+
+.settings .row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 0.75rem;
+}
+
+.settings .row .check {
+  margin: 0;
+}
+
+.seg.compact span {
+  padding: 0.375rem 0.75rem;
+  font-size: 0.8125rem;
+}
+
+#extended-section .seg.compact {
+  margin-top: 0.5rem;
+}
+
+#extended-section.off .packs,
+#extended-section.off .seg {
+  opacity: 0.4;
+  pointer-events: none;
+}
+
+.packs {
+  margin: 0.5rem 0 0 1.75rem;
+}
+
+.field {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+  color: var(--text);
+}
+
+.settings select,
+.settings input[type="search"] {
+  font: inherit;
+  color: var(--text);
+  background: rgba(255, 255, 255, 0.06);
+  border: 0.0625rem solid var(--line);
+  padding: 0.375rem 0.5rem;
+}
+
+.settings select option {
+  background: #16171a;
+}
+
+.settings input[type="search"] {
+  flex: 1;
+  min-width: 10rem;
+}
+
+.settings select:focus-visible,
+.settings input[type="search"]:focus-visible {
+  outline: 0.125rem solid var(--focus);
+  outline-offset: -0.125rem;
+}
+
+.check input:disabled + span {
+  opacity: 0.4;
+}
+
+.settings .wide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 100%;
+  margin: 0.25rem 0 0.25rem;
+  padding: 0.5rem;
+  border: 0.0625rem solid var(--line);
+}
+
+.settings .wide:hover,
+.settings .wide:focus-visible {
+  background: rgba(255, 255, 255, 0.12);
+  outline: none;
+}
+
+.track-list {
+  list-style: none;
+  margin: 0.75rem 0 0;
+  padding: 0;
+  max-height: 16rem;
+  overflow: auto;
+  border: 0.0625rem solid var(--line);
+}
+
+.track-list li {
+  display: flex;
+  align-items: stretch;
+  border-bottom: 0.0625rem solid rgba(255, 255, 255, 0.06);
+}
+
+.track-list li.current {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.track-list .pick {
+  flex: 1;
+  min-width: 0;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  column-gap: 0.5rem;
+  padding: 0.375rem 0.5rem;
+  text-align: left;
+}
+
+.track-list .pick b,
+.track-list .pick small {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.track-list .pick b {
+  font-weight: 500;
+  font-size: 0.875rem;
+}
+
+.track-list .pick small {
+  grid-row: 2;
+  font-size: 0.75rem;
+  color: var(--dim);
+}
+
+.track-list .game {
+  grid-row: 1 / 3;
+  grid-column: 2;
+  align-self: center;
+  font-size: 0.6875rem;
+  padding: 0 0.375rem;
+  border: 0.0625rem solid var(--line);
+  color: var(--dim);
+}
+
+.track-list .fav {
+  width: 2.25rem;
+  display: grid;
+  place-items: center;
+  color: var(--faint);
+}
+
+.track-list .fav[aria-pressed="true"] {
+  color: var(--gold);
+}
+
+.track-list .fav[aria-pressed="true"] i::before {
+  text-shadow: 0 0 0 currentColor;
+}
+
+.track-list button:hover,
+.track-list button:focus-visible {
+  background: rgba(255, 255, 255, 0.08);
+  outline: none;
+}
+
+body.still .backdrop .scape.pan {
+  animation: none;
+  transform: scale(1.04);
+}
+
+#top-screen,
+#settings-toggle {
+  transition: opacity 1.2s var(--ease);
+}
+
+body.ambient #top-screen,
+body.ambient #settings-toggle,
+body.ambient #settings {
+  opacity: 0;
+  pointer-events: none;
+}
+
+body.ambient #top-screen {
+  animation: none;
+}
+
+body.ambient {
+  cursor: none;
+}
+
+.ambience-hint {
+  position: fixed;
+  left: 50%;
+  bottom: 2.5rem;
+  transform: translateX(-50%);
+  z-index: 8;
+  padding: 0.5rem 1.25rem;
+  font-size: 0.9375rem;
+  color: var(--dim);
+  background: rgba(0, 0, 0, 0.55);
+  animation: fade-in 0.6s var(--ease) both;
+  pointer-events: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
   .backdrop .scape.pan {
     animation: none;
