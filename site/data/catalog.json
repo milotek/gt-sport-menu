@@ -18,39 +18,84 @@
   "backgrounds": {
     "normal": [
       {
-        "src": "img/backgrounds/dumbo_manhattan_bridge.jpg",
-        "title": "Manhattan Bridge from DUMBO, New York",
-        "kind": "licensed-substitute",
-        "credit": "Redd Angelo, CC0",
-        "source": "https://commons.wikimedia.org/wiki/File:Manhattan_through_Dumbo_(Unsplash).jpg"
+        "src": "https://gmedia.playstation.com/is/image/SIEPDC/gt-sport-lead-image-02-eu-09may17?$2400px$",
+        "title": "Scapes: cars at a desert location",
+        "kind": "official-hotlink",
+        "credit": "Sony Interactive Entertainment / Polyphony Digital, official GT Sport Scapes key image (May 2017), loaded from Sony's gmedia.playstation.com CDN and not rehosted",
+        "source": "https://www.playstation.com/en-us/games/gran-turismo-sport/",
+        "asset": "gt-sport-lead-image-02-eu-09may17"
       },
       {
-        "src": "img/backgrounds/fuji_kawaguchiko.jpg",
-        "title": "Mount Fuji from Lake Kawaguchi",
-        "kind": "licensed-substitute",
-        "credit": "Midori, CC BY 3.0",
-        "source": "https://commons.wikimedia.org/wiki/File:Lake_Kawaguchiko_Sakura_Mount_Fuji_4.JPG"
+        "src": "https://gmedia.playstation.com/is/image/SIEPDC/gran-turismo-sport-screen-14-ps4-eu-20may16?$2400px$",
+        "title": "Toyota FT-1 VGT at a circuit pit straight",
+        "kind": "official-hotlink",
+        "credit": "Sony Interactive Entertainment / Polyphony Digital, official GT Sport screenshot (May 2016, GT SPORT watermark top-left), loaded from Sony's gmedia.playstation.com CDN and not rehosted",
+        "source": "https://www.playstation.com/en-us/games/gran-turismo-sport/",
+        "asset": "gran-turismo-sport-screen-14-ps4-eu-20may16"
       },
       {
-        "src": "img/backgrounds/lisbon_alfama_tram.jpg",
-        "title": "Tram line 28, Alfama, Lisbon",
-        "kind": "licensed-substitute",
-        "credit": "Sonse, CC BY 2.0",
-        "source": "https://commons.wikimedia.org/wiki/File:Tram_Line_28_in_Alfama_(50662582522).jpg"
+        "src": "https://gmedia.playstation.com/is/image/SIEPDC/gran-turismo-sport-screen-13-ps4-eu-20may16?$2400px$",
+        "title": "Alpine Vision GT on track",
+        "kind": "official-hotlink",
+        "credit": "Sony Interactive Entertainment / Polyphony Digital, official GT Sport screenshot (May 2016, GT SPORT watermark top-left), loaded from Sony's gmedia.playstation.com CDN and not rehosted",
+        "source": "https://www.playstation.com/en-us/games/gran-turismo-sport/",
+        "asset": "gran-turismo-sport-screen-13-ps4-eu-20may16"
       },
       {
-        "src": "img/backgrounds/monument_valley_us163.jpg",
-        "title": "U.S. Route 163 to Monument Valley",
-        "kind": "licensed-substitute",
-        "credit": "katsrcool, CC BY 2.0",
-        "source": "https://commons.wikimedia.org/wiki/File:Long_Road_to_Monument_Valley_U.S._Route_163.jpg"
+        "src": "https://gmedia.playstation.com/is/image/SIEPDC/gran-turismo-sport-screen-17-ps4-eu-20may16?$2400px$",
+        "title": "Mitsubishi Lancer Evolution Gr.B on dirt",
+        "kind": "official-hotlink",
+        "credit": "Sony Interactive Entertainment / Polyphony Digital, official GT Sport screenshot (May 2016, GT SPORT watermark top-left), loaded from Sony's gmedia.playstation.com CDN and not rehosted",
+        "source": "https://www.playstation.com/en-us/games/gran-turismo-sport/",
+        "asset": "gran-turismo-sport-screen-17-ps4-eu-20may16"
       },
       {
-        "src": "img/backgrounds/wasatch_route6_sunset.jpg",
-        "title": "Wasatch Mountains from U.S. Route 6, Utah",
-        "kind": "licensed-substitute",
-        "credit": "Ken Lund, CC BY-SA 2.0",
-        "source": "https://commons.wikimedia.org/wiki/File:Misty_Sunset_over_Wasatch_Mountains,_U.S._Route_6,_Santaquin,_Utah.jpg"
+        "src": "https://gmedia.playstation.com/is/image/SIEPDC/gran-turismo-sport-screen-19-ps4-eu-20may16?$2400px$",
+        "title": "Pit lane at an oval",
+        "kind": "official-hotlink",
+        "credit": "Sony Interactive Entertainment / Polyphony Digital, official GT Sport screenshot (May 2016, GT SPORT watermark top-left), loaded from Sony's gmedia.playstation.com CDN and not rehosted",
+        "source": "https://www.playstation.com/en-us/games/gran-turismo-sport/",
+        "asset": "gran-turismo-sport-screen-19-ps4-eu-20may16"
+      },
+      {
+        "src": "https://gmedia.playstation.com/is/image/SIEPDC/gran-turismo-sport-screen-02-ps4-eu-28oct15?$2400px$",
+        "title": "Mazda LM55 Vision GT",
+        "kind": "official-hotlink",
+        "credit": "Sony Interactive Entertainment / Polyphony Digital, official GT Sport reveal screenshot (Oct 2015), loaded from Sony's gmedia.playstation.com CDN and not rehosted",
+        "source": "https://www.playstation.com/en-us/games/gran-turismo-sport/",
+        "asset": "gran-turismo-sport-screen-02-ps4-eu-28oct15"
+      },
+      {
+        "src": "https://gmedia.playstation.com/is/image/SIEPDC/gran-turismo-sport-screen-03-ps4-eu-28oct15?$2400px$",
+        "title": "Audi R8 LMS on track",
+        "kind": "official-hotlink",
+        "credit": "Sony Interactive Entertainment / Polyphony Digital, official GT Sport reveal screenshot (Oct 2015), loaded from Sony's gmedia.playstation.com CDN and not rehosted",
+        "source": "https://www.playstation.com/en-us/games/gran-turismo-sport/",
+        "asset": "gran-turismo-sport-screen-03-ps4-eu-28oct15"
+      },
+      {
+        "src": "https://gmedia.playstation.com/is/image/SIEPDC/gran-turismo-sport-screen-04-ps4-eu-28oct15?$2400px$",
+        "title": "Mercedes-AMG GT and SLS in a showroom",
+        "kind": "official-hotlink",
+        "credit": "Sony Interactive Entertainment / Polyphony Digital, official GT Sport reveal screenshot (Oct 2015), loaded from Sony's gmedia.playstation.com CDN and not rehosted",
+        "source": "https://www.playstation.com/en-us/games/gran-turismo-sport/",
+        "asset": "gran-turismo-sport-screen-04-ps4-eu-28oct15"
+      },
+      {
+        "src": "https://gmedia.playstation.com/is/image/SIEPDC/gran-turismo-sport-screen-06-ps4-eu-28oct15?$2400px$",
+        "title": "Mazda Roadster and LM55",
+        "kind": "official-hotlink",
+        "credit": "Sony Interactive Entertainment / Polyphony Digital, official GT Sport reveal screenshot (Oct 2015), loaded from Sony's gmedia.playstation.com CDN and not rehosted",
+        "source": "https://www.playstation.com/en-us/games/gran-turismo-sport/",
+        "asset": "gran-turismo-sport-screen-06-ps4-eu-28oct15"
+      },
+      {
+        "src": "https://gmedia.playstation.com/is/image/SIEPDC/gran-turismo-sport-screen-07-ps4-eu-28oct15?$2400px$",
+        "title": "Audi R8 LMS and R18 at the Nürburgring",
+        "kind": "official-hotlink",
+        "credit": "Sony Interactive Entertainment / Polyphony Digital, official GT Sport reveal screenshot (Oct 2015), loaded from Sony's gmedia.playstation.com CDN and not rehosted",
+        "source": "https://www.playstation.com/en-us/games/gran-turismo-sport/",
+        "asset": "gran-turismo-sport-screen-07-ps4-eu-28oct15"
       }
     ],
     "christmas": [
@@ -62,25 +107,12 @@
         "source": "https://www.gran-turismo.com/us/news/00_3777798.html"
       },
       {
-        "src": "img/backgrounds/paris_champs_elysees.jpg",
-        "title": "Champs-Élysées, 27 December 2021",
-        "kind": "licensed-substitute",
-        "credit": "Pierre Blaché, CC0",
-        "source": "https://commons.wikimedia.org/wiki/File:The_Avenue_des_Champs-%C3%89lys%C3%A9es_and_the_Arc_de_Triomphe,_Paris_27_December_2021.jpg"
-      },
-      {
-        "src": "img/backgrounds/paris_illuminations.jpg",
-        "title": "Champs-Élysées illuminations",
-        "kind": "licensed-substitute",
-        "credit": "Dimitri Destugues, CC BY-SA 3.0",
-        "source": "https://commons.wikimedia.org/wiki/File:Champs-Elys%C3%A9es-Illuminations.jpg"
-      },
-      {
-        "src": "img/backgrounds/paris_noel_2024.jpg",
-        "title": "Champs-Élysées Christmas lights 2024",
-        "kind": "licensed-substitute",
-        "credit": "Tangopaso, public domain",
-        "source": "https://commons.wikimedia.org/wiki/File:Illuminations_de_No%C3%ABl_2024_des_Champs-%C3%89lys%C3%A9es.jpg"
+        "src": "https://gmedia.playstation.com/is/image/SIEPDC/gt-sport-lead-image-02-eu-09may17?$2400px$",
+        "title": "Scapes: cars at a desert location",
+        "kind": "official-hotlink",
+        "credit": "Sony Interactive Entertainment / Polyphony Digital, official GT Sport Scapes key image (May 2017), loaded from Sony's gmedia.playstation.com CDN and not rehosted",
+        "source": "https://www.playstation.com/en-us/games/gran-turismo-sport/",
+        "asset": "gt-sport-lead-image-02-eu-09may17"
       }
     ],
     "title": {
@@ -88,7 +120,13 @@
       "kind": "official-hotlink",
       "credit": "Polyphony Digital / Sony Interactive Entertainment, loaded from gran-turismo.com and not rehosted",
       "source": "https://www.gran-turismo.com/us/gtsport/news/00_1344615.html"
-    }
+    },
+    "notes": [
+      "All backgrounds are official GT Sport images (Scapes renders and promotional screenshots) hotlinked from Sony and Polyphony hosts. None are in-game Top Screen captures.",
+      "The May 2016 screenshots carry a small GT SPORT watermark in the top-left corner, which sits under the translucent top bar.",
+      "The Oct 2015 screenshots come from the game's reveal and show a pre-release build.",
+      "No festive Scapes captures beyond the Holiday Season Update key image were found online, so the Christmas slideshow pairs it with the Scapes key image."
+    ]
   },
   "news": {
     "normal": {

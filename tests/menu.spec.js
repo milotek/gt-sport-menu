@@ -50,8 +50,8 @@ async function enter(page) {
 }
 
 async function visibleScape(page) {
-  await expect(page.locator(".scape.on")).toHaveCount(1, { timeout: 15000 });
-  return page.locator(".scape.on").evaluate((el) => el.dataset.src);
+  await expect(page.locator(".scape.on[data-src]")).toHaveCount(1, { timeout: 20000 });
+  return page.locator(".scape.on[data-src]").evaluate((el) => el.dataset.src);
 }
 
 test("title screen leads into the top screen with the manual's layout", async ({ page }) => {
@@ -77,12 +77,12 @@ test("background images actually render", async ({ page }) => {
   await open(page, { now: "2026-11-11T12:00:00" });
   await enter(page);
   const src = await visibleScape(page);
-  expect(src).toMatch(/img\/backgrounds\/.+\.jpg$/);
+  expect(src).toMatch(/^https:\/\/gmedia\.playstation\.com\/is\/image\/SIEPDC\/.+\$2400px\$$/);
   const size = await page.evaluate(
     (src) => new Promise((r) => { const i = new Image(); i.onload = () => r([i.naturalWidth, i.naturalHeight]); i.onerror = () => r([0, 0]); i.src = src; }),
     src,
   );
-  expect(size[0]).toBeGreaterThanOrEqual(1280);
+  expect(size[0]).toBeGreaterThanOrEqual(2400);
   const opacity = await page.locator(".scape.on").evaluate((el) => getComputedStyle(el).opacity);
   await expect.poll(() => page.locator(".scape.on").evaluate((el) => Number(getComputedStyle(el).opacity)), { timeout: 5000 }).toBeGreaterThan(0.95);
   expect(Number(opacity)).toBeGreaterThanOrEqual(0);
@@ -212,7 +212,7 @@ test("local background images override the slideshow", async ({ page }) => {
   await expect.poll(() => visibleScape(page)).toMatch(/^blob:/);
   await expect(page.locator("#bg-credit")).toContainText("your image");
   await page.click("#clear-local");
-  await expect.poll(() => visibleScape(page)).toMatch(/img\/backgrounds\//);
+  await expect.poll(() => visibleScape(page)).toMatch(/^https:\/\/(gmedia\.playstation|www\.gran-turismo)\.com\//);
 });
 
 async function audioState(page) {
@@ -325,6 +325,6 @@ test("credits page lists every catalogued source", async ({ page }) => {
   await expect(page.locator("#menu table tr")).toHaveCount(63);
   await expect(page.locator("#christmas")).toContainText("Silent Night");
   await expect(page.locator("#christmas")).toContainText("We Wish You a Merry Christmas");
-  await expect(page.locator("#backgrounds")).toContainText("CC BY 3.0");
+  await expect(page.locator("#backgrounds")).toContainText("gmedia.playstation.com");
   await page.screenshot({ path: `${SHOTS}/08_credits.png`, fullPage: true });
 });

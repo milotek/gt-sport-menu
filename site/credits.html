@@ -62,9 +62,10 @@
       <ul>${st.missing.map((m) => `<li class="gap">${esc(m)}</li>`).join("")}</ul>
       ${rows(menu)}`;
     const bg = (list, label) => `<h3>${label}</h3><table><tr><th>Image</th><th>Type</th><th>Credit</th></tr>
-      ${list.map((b) => `<tr><td><a href="${esc(b.source)}">${esc(b.title ?? "Title screen")}</a></td><td>${b.kind === "official-hotlink" ? "official, hotlinked" : "substitute"}</td><td class="muted">${esc(b.credit)}</td></tr>`).join("")}</table>`;
+      ${list.map((b) => `<tr><td><a href="${esc(b.source)}">${esc(b.title ?? "Title screen")}</a></td><td>${b.kind === "official-hotlink" ? "official, hotlinked" : "substitute"}<br><span class="muted">${esc(new URL(b.src).hostname)}</span></td><td class="muted">${esc(b.credit)}</td></tr>`).join("")}</table>`;
     document.querySelector("#backgrounds").innerHTML = `
-      <p>GT Sport's real Top Screen shows in-game clips and Scapes photos. Those are not published as standalone images, so the normal-season backgrounds are licensed photos of real Scapes-style locations and are labelled as substitutes. Official images are loaded straight from gran-turismo.com and are not rehosted.</p>
+      <p>Backgrounds are official GT Sport images: Scapes renders and promotional screenshots, hotlinked from Sony's and Polyphony's own hosts and not rehosted. They are not captures of the in-game Top Screen.</p>
+      <ul>${c.backgrounds.notes.map((n) => `<li class="muted">${esc(n)}</li>`).join("")}</ul>
       ${bg(c.backgrounds.normal, "Normal")}${bg(c.backgrounds.christmas, "Christmas")}${bg([c.backgrounds.title], "Title screen")}`;
   </script>
 </body>

@@ -65,8 +65,8 @@ Name audio `Artist - Title.ext` to get proper track info.
 
 ## Backgrounds
 
-GT Sport's real Top Screen shows in-game clips and Scapes photos, and those are not published as standalone images.
-Normal-season backgrounds are licensed Wikimedia Commons photos of Scapes-style locations, labelled as substitutes.
-The Christmas set adds the official Holiday Season Update image, which is loaded from gran-turismo.com and not rehosted.
+Backgrounds are official GT Sport images: a Scapes key image and promotional screenshots from PlayStation's GT Sport page, plus the Holiday Season Update image from gran-turismo.com.
+They are hotlinked from Sony's and Polyphony's own hosts, not rehosted, and none of them are captures of the in-game Top Screen.
+The May 2016 screenshots have a small GT SPORT watermark top-left, under the translucent top bar, and the Oct 2015 ones come from the reveal build.
 Your own images, added in Settings or imported with the tool, replace the built-in set.
 Credits are on `credits.html`.
