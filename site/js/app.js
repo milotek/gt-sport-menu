@@ -79,7 +79,6 @@ async function showSlide(i) {
     layer.classList.add("on", "pan");
     layer.classList.toggle("alt", slideIndex % 2 === 1);
     back.classList.remove("on");
-    $("#bg-credit").textContent = `${s.title} · ${s.kind === "user" ? "your image" : s.kind === "official-hotlink" ? "official image" : "substitute"} · ${s.credit}`;
     return;
   }
 }
@@ -103,20 +102,15 @@ function soundtrackPool() {
   const packs = prefs.extended && prefs.packs.length ? prefs.packs : ["gtsport"];
   const ofPacks = (s) => allTracks.filter((t) => packs.includes(t.game) && t.season === s);
   let tracks = ofPacks(season);
-  let note = "";
   if (season === "christmas") {
     if (prefs.extended && prefs.xmasMix === "all") tracks = [...tracks, ...ofPacks("normal")];
-    else if (!tracks.length) {
-      tracks = soundtrack.tracks.filter((t) => t.season === "christmas");
-      note = "The selected packs have no holiday tracks, so GT Sport's Christmas music plays.";
-    }
+    else if (!tracks.length) tracks = soundtrack.tracks.filter((t) => t.season === "christmas");
   }
   if (prefs.favoritesOnly) {
     const favs = tracks.filter((t) => prefs.favorites.includes(t.id));
     if (favs.length) tracks = favs;
-    else note = "No favourites in this playlist yet, so everything plays.";
   }
-  return { tracks, note };
+  return tracks;
 }
 
 function musicTracks(source) {
@@ -125,7 +119,7 @@ function musicTracks(source) {
     const mine = userAudio.filter(inSeason);
     return mine.length ? mine : userAudio;
   }
-  return soundtrackPool().tracks;
+  return soundtrackPool();
 }
 
 function playMusic() {
@@ -173,13 +167,7 @@ function announce(t) {
 }
 
 function renderPool() {
-  const { tracks, note } = soundtrackPool();
-  const counts = Object.entries(extended.packs)
-    .map(([id, p]) => [p.label, tracks.filter((t) => t.game === id).length])
-    .filter(([, n]) => n)
-    .map(([label, n]) => `${label} ${n}`)
-    .join(", ");
-  $("#pool-hint").textContent = `${season === "christmas" ? "Christmas" : "Normal"} playlist: ${counts || "empty"}.${note ? ` ${note}` : ""}`;
+  const tracks = soundtrackPool();
   const q = $("#track-search").value.trim().toLowerCase();
   const list = prefs.favoritesOnly ? tracks.filter((t) => prefs.favorites.includes(t.id)) : tracks;
   const shown = list.filter((t) => !q || `${t.title} ${t.artist} ${gameLabel(t)}`.toLowerCase().includes(q));
@@ -225,13 +213,6 @@ function renderPool() {
 function applySeason() {
   season = resolveSeason(prefs.season, now(), catalog.christmasWindow);
   document.body.dataset.season = season;
-  const w = catalog.christmasWindow;
-  const pad = (n) => String(n).padStart(2, "0");
-  const range = `${pad(w.start[1])}/${pad(w.start[0])} to ${pad(w.end[1])}/${pad(w.end[0])}`;
-  $("#season-hint").textContent =
-    prefs.season === "auto"
-      ? `Now ${season}. Christmas runs ${range} (day/month), based on player reports. The end date is approximate.`
-      : `Forced ${season}.`;
   const news = catalog.news[season];
   $("#news-tag").textContent = news.tag;
   $("#news-headline").textContent = news.headline;
@@ -244,7 +225,7 @@ function applyMotion() {
   document.body.classList.toggle("still", still);
   $("#motion").checked = prefs.motion && !reducedMotion.matches;
   $("#motion").disabled = reducedMotion.matches;
-  $("#motion-hint").textContent = reducedMotion.matches ? "Your system asks for reduced motion, so backgrounds stay still." : "";
+  $("#motion").closest("label").title = reducedMotion.matches ? "Off: system reduced motion" : "";
 }
 
 function tick() {
@@ -280,7 +261,6 @@ async function loadUserMedia() {
     ...manifest.images.map((i) => ({ src: `media/local/${i.file}`, title: i.title || i.file, season: i.season, kind: "user", credit: "local folder" })),
     ...images.map((f) => ({ src: URL.createObjectURL(f.blob), title: f.name, kind: "user", credit: "imported in this browser" })),
   ];
-  $("#local-count").textContent = `${userAudio.length} audio file${userAudio.length === 1 ? "" : "s"}, ${userImages.length} image${userImages.length === 1 ? "" : "s"} saved in this browser or local folder.`;
 }
 
 let openMode;

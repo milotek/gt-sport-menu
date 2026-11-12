@@ -123,7 +123,7 @@ test("settings force seasons and persist", async ({ page }) => {
   await expect(page.locator("#settings")).toBeVisible();
   await page.locator('label:has(input[name="season"][value="christmas"])').click();
   await expect(page.locator("body")).toHaveAttribute("data-season", "christmas");
-  await expect(page.locator("#season-hint")).toHaveText("Forced christmas.");
+  await expect(page.locator('input[name="season"][value="christmas"]')).toBeChecked();
   await page.screenshot({ path: `${SHOTS}/04_settings_panel.png` });
   await page.reload();
   await expect(page.locator("body")).toHaveAttribute("data-ready", "true");
@@ -171,7 +171,6 @@ test("local audio files persist and actually play", async ({ page }) => {
     { name: "Test Tone A.wav", mimeType: "audio/wav", buffer: toneWav(6, 440) },
     { name: "Test Tone B.wav", mimeType: "audio/wav", buffer: toneWav(6, 660) },
   ]);
-  await expect(page.locator("#local-count")).toContainText("2 audio files");
   await expect(page.locator("#track-status")).toHaveText("Playing");
   const first = await page.locator("#track-title").textContent();
   expect(["Test Tone A", "Test Tone B"]).toContain(first);
@@ -183,13 +182,12 @@ test("local audio files persist and actually play", async ({ page }) => {
   await page.locator("#volume").fill("20");
   await page.reload();
   await expect(page.locator("body")).toHaveAttribute("data-ready", "true");
-  await expect(page.locator("#local-count")).toContainText("2 audio files");
   await expect(page.locator("#volume")).toHaveValue("20");
   await enter(page);
   await expect(page.locator("#track-status")).toHaveText("Playing");
   await page.keyboard.press("s");
   await page.click("#clear-local");
-  await expect(page.locator("#local-count")).toContainText("0 audio files");
+  await expect(page.locator("#track-status")).toHaveText("No audio files added yet");
 });
 
 test("local background images override the slideshow", async ({ page }) => {
@@ -210,7 +208,6 @@ test("local background images override the slideshow", async ({ page }) => {
   await page.keyboard.press("s");
   await page.setInputFiles("#local-images", { name: "my_scape.png", mimeType: "image/png", buffer: png });
   await expect.poll(() => visibleScape(page)).toMatch(/^blob:/);
-  await expect(page.locator("#bg-credit")).toContainText("your image");
   await page.click("#clear-local");
   await expect.poll(() => visibleScape(page)).toMatch(/^https:\/\/(gmedia\.playstation|www\.gran-turismo)\.com\//);
 });

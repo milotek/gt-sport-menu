@@ -57,6 +57,24 @@ async function energy(page) {
   });
 }
 
+async function poolGames(page) {
+  await openOptions(page, "browser");
+  return page.locator("#track-list .game").evaluateAll((els) => {
+    const counts = {};
+    for (const el of els) counts[el.textContent] = (counts[el.textContent] || 0) + 1;
+    return counts;
+  });
+}
+
+const idbFiles = (page) =>
+  page.evaluate(() => new Promise((resolve) => {
+    const req = indexedDB.open("gt-sport-menu", 1);
+    req.onsuccess = () => {
+      const get = req.result.transaction("files").objectStore("files").count();
+      get.onsuccess = () => resolve(get.result);
+    };
+  }));
+
 async function expectAdvancing(page) {
   await expect(page.locator("#track-status")).toHaveText("Playing", { timeout: 90000 });
   const a = await audio(page);
@@ -71,7 +89,7 @@ test("defaults keep the GT Sport view and playlist, and the GT Menu opens Option
   await expect(page.locator("#settings h2")).toHaveText("Options");
   await openOptions(page, "extended");
   await expect(page.locator("#extended")).not.toBeChecked();
-  await expect(page.locator("#pool-hint")).toHaveText("Normal playlist: GT Sport 62.");
+  expect(await poolGames(page)).toEqual({ "GT Sport": 62 });
   await expect(page.locator("#packs label")).toHaveText([/GT Sport \(2017\) · 65 tracks/, /GT4 \(2004\) · 10 tracks/, /GT7 \(2022\) · 75 tracks/]);
   await expect(page.locator('input[name="xmas-mix"][value="holiday"]')).toBeChecked();
   expect(errors).toEqual([]);
@@ -89,7 +107,7 @@ test("extended packs change the real audio source and play GT7 then GT4 @network
   await page.locator("#extended + span").click();
   await page.locator("#packs label", { hasText: "GT7" }).click();
   await page.locator("#packs label", { hasText: "GT Sport" }).click();
-  await expect(page.locator("#pool-hint")).toHaveText("Normal playlist: GT7 75.");
+  expect(await poolGames(page)).toEqual({ GT7: 75 });
   await expect.poll(async () => (await audio(page)).src, { timeout: 30000 }).toContain("2022%20-%20Gran%20Turismo%207");
   const gt7 = await expectAdvancing(page);
   const rms7 = await energy(page);
@@ -98,7 +116,7 @@ test("extended packs change the real audio source and play GT7 then GT4 @network
   await page.screenshot({ path: `${SHOTS}/09_options_extended_gt7.png` });
   await page.locator("#packs label", { hasText: "GT4" }).click();
   await page.locator("#packs label", { hasText: "GT7" }).click();
-  await expect(page.locator("#pool-hint")).toHaveText("Normal playlist: GT4 10.");
+  expect(await poolGames(page)).toEqual({ GT4: 10 });
   await expect.poll(async () => (await audio(page)).src, { timeout: 30000 }).toContain("2004%20-%20Gran%20Turismo%204");
   const gt4 = await expectAdvancing(page);
   await expect(page.locator("#track-artist")).toContainText("Isamu Ohira · GT4");
@@ -115,14 +133,14 @@ test("Christmas stays holiday-only with extended packs unless mixing is chosen",
   await enter(page);
   await expect(page.locator("body")).toHaveAttribute("data-season", "christmas");
   await openOptions(page, "extended", "browser");
-  await expect(page.locator("#pool-hint")).toHaveText("Christmas playlist: GT Sport 3. The selected packs have no holiday tracks, so GT Sport's Christmas music plays.");
+  expect(await poolGames(page)).toEqual({ "GT Sport": 3 });
   await expect(page.locator("#track-list li")).toHaveCount(3);
   await page.locator('label:has(input[name="xmas-mix"][value="all"])').click();
-  await expect(page.locator("#pool-hint")).toHaveText("Christmas playlist: GT4 10, GT7 75.");
+  expect(await poolGames(page)).toEqual({ GT4: 10, GT7: 75 });
   await page.locator("#packs label", { hasText: "GT Sport" }).click();
-  await expect(page.locator("#pool-hint")).toHaveText("Christmas playlist: GT Sport 65, GT4 10, GT7 75.");
+  expect(await poolGames(page)).toEqual({ "GT Sport": 65, GT4: 10, GT7: 75 });
   await page.locator('label:has(input[name="xmas-mix"][value="holiday"])').click();
-  await expect(page.locator("#pool-hint")).toHaveText("Christmas playlist: GT Sport 3.");
+  expect(await poolGames(page)).toEqual({ "GT Sport": 3 });
 });
 
 test("in-order play, repeat and volume persist @network", async ({ page }) => {
@@ -169,7 +187,7 @@ test("track browser searches, plays a pick and keeps favourites @network", async
   await page.locator("#favorites-only + span").click();
   await expect(page.locator("#track-list li")).toHaveCount(1);
   await openOptions(page, "extended");
-  await expect(page.locator("#pool-hint")).toHaveText("Normal playlist: GT4 1.");
+  expect(await poolGames(page)).toEqual({ GT4: 1 });
   await page.screenshot({ path: `${SHOTS}/10_options_track_browser.png` });
   await page.reload();
   await expect(page.locator("body")).toHaveAttribute("data-ready", "true");
@@ -240,7 +258,6 @@ test("motion toggle, slide interval and reduced motion are respected", async ({ 
   await page.emulateMedia({ reducedMotion: "reduce" });
   await expect(page.locator("body")).toHaveClass(/still/);
   await expect(page.locator("#motion")).toBeDisabled();
-  await expect(page.locator("#motion-hint")).toContainText("reduced motion");
 });
 
 test("reset restores defaults without removing imported files", async ({ page }) => {
@@ -248,17 +265,17 @@ test("reset restores defaults without removing imported files", async ({ page })
   await enter(page);
   await openOptions(page);
   await page.setInputFiles("#local-files", { name: "Mine.wav", mimeType: "audio/wav", buffer: Buffer.from("RIFF0000WAVE") });
-  await expect(page.locator("#local-count")).toContainText("1 audio file");
+  await expect.poll(() => idbFiles(page)).toBe(1);
   await page.click("#reset-settings");
   await expect(page.locator("#extended")).not.toBeChecked();
   await expect(page.locator("#repeat")).not.toBeChecked();
   await expect(page.locator('input[name="order"][value="shuffle"]')).toBeChecked();
   await expect(page.locator('input[name="source"][value="soundtrack"]')).toBeChecked();
   await expect(page.locator("#slide-interval")).toHaveValue("20");
-  await expect(page.locator("#local-count")).toContainText("1 audio file");
+  expect(await idbFiles(page)).toBe(1);
   expect(await page.evaluate(() => localStorage.getItem("gt-sport-menu"))).toBeNull();
   await page.click("#clear-local");
-  await expect(page.locator("#local-count")).toContainText("0 audio files");
+  await expect.poll(() => idbFiles(page)).toBe(0);
 });
 
 test("options panel fits narrow screens", async ({ page }) => {
