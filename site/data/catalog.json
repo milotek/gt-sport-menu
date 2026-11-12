@@ -160,5 +160,119 @@
     "summary": "Menu tracks play natively from an anonymous archive.org fan upload, 'Gran Turismo Complete Soundtrack', streamed straight from archive.org's per-file links. Nothing is rehosted here. Embedded ID3 comments point to the Sitting on Clouds fan OST site. Licensing is not stated by the uploader.",
     "listSource": "https://www.gtplanet.net/forum/threads/gran-turismo-sport-confirmed-soundtracks-ost.346382/page-5",
     "gaps": "Four tracks from the GTPlanet community menu list are not in the upload and are not played. Post-launch menu additions (GT League and legacy GT tracks) are not included."
-  }
+  },
+  "modeMenus": {
+    "source": "Item names, order, colours and the visible descriptions come from the official GT Sport online manual screenshots: Arcade (https://www.gran-turismo.com/images/c/i1UoQ6BFdpTElcc.jpg), Campaign (https://www.gran-turismo.com/images/c/i1qE7ZNmZiYKAEE.jpg) and Sport (https://www.gran-turismo.com/images/c/i1Iv8zAQVfMLk8E.jpg). Icons are Tabler stand-ins.",
+    "arcade": [
+      {
+        "label": "Single Race",
+        "detail": "Race against the AI.",
+        "icon": "ti-flag-3",
+        "color": "#5aa0ef"
+      },
+      {
+        "label": "Time Trial",
+        "icon": "ti-stopwatch",
+        "color": "#5aa0ef"
+      },
+      {
+        "label": "Drift Trial",
+        "icon": "ti-flag-2",
+        "color": "#5aa0ef"
+      },
+      {
+        "label": "Custom Race",
+        "icon": "ti-adjustments-horizontal",
+        "color": "#5aa0ef"
+      },
+      {
+        "label": "2 Player Battle",
+        "icon": "ti-helmet",
+        "color": "#5aa0ef"
+      },
+      {
+        "label": "VR Tour",
+        "icon": "ti-cardboards",
+        "color": "#5aa0ef"
+      }
+    ],
+    "campaign": [
+      {
+        "label": "GT League",
+        "detail": "Compete in a wide variety of races using the cars in your garage.",
+        "icon": "ti-square-letter-g",
+        "color": "#4aa3df"
+      },
+      {
+        "label": "Driving School",
+        "icon": "ti-cone",
+        "color": "#f29a1f"
+      },
+      {
+        "label": "Mission Challenge",
+        "icon": "ti-shield",
+        "color": "#e8456b"
+      },
+      {
+        "label": "Circuit Experience",
+        "icon": "ti-route",
+        "color": "#8cc63f"
+      },
+      {
+        "label": "Lewis Hamilton Time Trial Challenge",
+        "icon": "ti-user",
+        "color": "#b0b3b8"
+      }
+    ],
+    "sport": [
+      {
+        "label": "Race Entry",
+        "detail": "Participate in Daily Races and Championships.",
+        "icon": "ti-trophy",
+        "color": "#d6b04c"
+      },
+      {
+        "label": "Time Trial",
+        "icon": "ti-stopwatch",
+        "color": "#d6b04c"
+      },
+      {
+        "label": "Live Reports",
+        "icon": "ti-broadcast",
+        "color": "#d6b04c"
+      },
+      {
+        "label": "Racing Etiquette",
+        "icon": "ti-book",
+        "color": "#d6b04c"
+      }
+    ]
+  },
+  "interface": [
+    {
+      "item": "Cursor",
+      "type": "reconstruction",
+      "detail": "Original SVG arrowhead (site/img/cursor.svg) drawn to match the two-tone pointer visible in official manual screenshots, e.g. https://www.gran-turismo.com/images/c/i1VJXwL3xzD8gz.jpg (1920x1080) and https://www.gran-turismo.com/images/c/i1Kej9i5xTmXiz.jpg (3840x2160). No extracted cursor asset was found."
+    },
+    {
+      "item": "Mode dropdowns",
+      "type": "reconstruction",
+      "detail": "Arcade, Campaign and Sport sub-menus rebuilt in CSS from the manual's Top Screen screenshots (item names, order, colours, expanded first row with description). Icons are Tabler stand-ins."
+    },
+    {
+      "item": "Word balloons",
+      "type": "reconstruction",
+      "detail": "Dark rounded tooltip with light text, matching the 'Entry' balloon in https://www.gran-turismo.com/images/c/i1Kej9i5xTmXiz.jpg."
+    },
+    {
+      "item": "UI sounds",
+      "type": "not available",
+      "detail": "No genuine GT Sport cursor, select or back sounds were found in public sources: The Sounds Resource lists only GT2 and GT3 for the series (archived search, March 2023), archive.org has none, and the soundtrack upload's cues are 10-60 second jingles. Options > UI sounds plays your own files per cue."
+    },
+    {
+      "item": "Game icons",
+      "type": "inventory only",
+      "detail": "The Spriters Resource 'Icons' set for GT Sport (asset 485408) holds the PS4 system icon, a lobby session image and screenshot watermarks, not menu UI. Not used."
+    }
+  ]
 }

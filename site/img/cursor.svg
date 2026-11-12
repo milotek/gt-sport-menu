@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="32" height="40" viewBox="0 0 32 40">
+  <defs>
+    <filter id="s" x="-30%" y="-30%" width="160%" height="160%">
+      <feDropShadow dx="1.5" dy="2" stdDeviation="1.5" flood-color="#000" flood-opacity="0.55"/>
+    </filter>
+  </defs>
+  <g filter="url(#s)">
+    <polygon points="3,3 3,33 11,25" fill="#b9bcc2"/>
+    <polygon points="3,3 11,25 25,24" fill="#f7f8fa"/>
+  </g>
+</svg>

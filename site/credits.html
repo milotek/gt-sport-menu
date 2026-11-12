@@ -37,6 +37,9 @@
     <h2>Backgrounds</h2>
     <div id="backgrounds"></div>
 
+    <h2>Interface assets</h2>
+    <div id="interface"></div>
+
     <h2>Fonts and icons</h2>
     <p>The in-game UI font (Sony's SST) is not freely licensed. The page uses SST if it is installed locally and falls back to Roboto from Google Fonts. Icons are <a href="https://tabler.io/icons">Tabler Icons</a> (MIT), standing in for the in-game glyphs.</p>
   </main>
@@ -73,6 +76,8 @@
       <h3>GT7 (2022): ${pack("gt7").length} tracks</h3>
       <p class="muted">${esc(pack("gt7")[0]?.basis)}. Excluded ${ex.excluded.gt7.length} other files in the GT7 folder: race and dual-use tracks, untagged tracks, and files whose tags say they were ripped from GT5 releases.</p>
       ${rows(pack("gt7"))}`;
+    document.querySelector("#interface").innerHTML = `<table><tr><th>Item</th><th>Type</th><th>Detail</th></tr>
+      ${c.interface.map((i) => `<tr><td>${esc(i.item)}</td><td>${esc(i.type)}</td><td class="muted">${esc(i.detail)}</td></tr>`).join("")}</table>`;
     const bg = (list, label) => `<h3>${label}</h3><table><tr><th>Image</th><th>Type</th><th>Credit</th></tr>
       ${list.map((b) => `<tr><td><a href="${esc(b.source)}">${esc(b.title ?? "Title screen")}</a></td><td>${b.kind === "official-hotlink" ? "official, hotlinked" : "substitute"}<br><span class="muted">${esc(new URL(b.src).hostname)}</span></td><td class="muted">${esc(b.credit)}</td></tr>`).join("")}</table>`;
     document.querySelector("#backgrounds").innerHTML = `

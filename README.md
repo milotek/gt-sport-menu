@@ -74,6 +74,18 @@ Files are copied into `site/media/local/` with snake_case names, and a manifest 
 That folder is gitignored, so it stays on your machine.
 Name audio `Artist - Title.ext` to get proper track info.
 
+## Interface assets
+
+The cursor, mode dropdowns and dark word balloons are reconstructions from official manual screenshots, not extracted game assets.
+No genuine GT Sport UI sounds are publicly available, so none are bundled.
+Options > UI sounds takes your own Move, Select and Back files, with separate volume and mute, or import them for local use:
+
+```sh
+python3 tools/import_media.py ~/path/to/select.wav --sfx select
+```
+
+The full inventory, with sources and gaps, is on `credits.html`.
+
 ## Backgrounds
 
 Backgrounds are official GT Sport images: a Scapes key image and promotional screenshots from PlayStation's GT Sport page, plus the Holiday Season Update image from gran-turismo.com.

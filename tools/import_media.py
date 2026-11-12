@@ -29,10 +29,11 @@ def main():
     ap.add_argument("sources", nargs="+", type=Path, help="Files or directories to import")
     ap.add_argument("--dry-run", action="store_true", help="Show the plan without copying")
     ap.add_argument("--season", choices=["normal", "christmas", "any"], default="any", help="Tag imported files with a season")
+    ap.add_argument("--sfx", choices=["move", "select", "back"], help="Import a single audio file as this UI sound cue")
     args = ap.parse_args()
 
     manifest_path = DEST / "manifest.json"
-    manifest = json.loads(manifest_path.read_text()) if manifest_path.exists() else {"audio": [], "images": []}
+    manifest = {"audio": [], "images": [], "sfx": {}, **(json.loads(manifest_path.read_text()) if manifest_path.exists() else {})}
     known = {e["file"] for e in manifest["audio"] + manifest["images"]}
 
     files = []
@@ -43,6 +44,14 @@ def main():
         ext = f.suffix.lower()
         if ext not in AUDIO | IMAGES:
             continue
+        if args.sfx and ext in AUDIO:
+            target = f"sfx_{args.sfx}{ext}"
+            print(f"copy  {f} -> {DEST / target} (UI sound: {args.sfx})")
+            manifest["sfx"][args.sfx] = target
+            if not args.dry_run:
+                DEST.mkdir(parents=True, exist_ok=True)
+                shutil.copy2(f, DEST / target)
+            break
         target = snake(f.stem) + ext
         if target in known:
             print(f"skip  {f} (already imported as {target})")

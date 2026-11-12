@@ -32,6 +32,15 @@ export async function listFiles(kind) {
   return all.filter((f) => f.kind === kind);
 }
 
+export async function replaceKind(kind, files) {
+  const old = await listFiles(kind);
+  await tx("readwrite", (s) => {
+    for (const f of old) s.delete(f.id);
+    for (const f of files) s.add({ kind, name: f.name, type: f.type, blob: f });
+    return {};
+  });
+}
+
 export function clearFiles() {
   return tx("readwrite", (s) => s.clear());
 }
@@ -41,8 +50,8 @@ export function clearFiles() {
 export async function folderManifest() {
   try {
     const res = await fetch("media/local/manifest.json", { cache: "no-store" });
-    return res.ok ? await res.json() : { audio: [], images: [] };
+    return res.ok ? { audio: [], images: [], sfx: {}, ...(await res.json()) } : { audio: [], images: [], sfx: {} };
   } catch {
-    return { audio: [], images: [] };
+    return { audio: [], images: [], sfx: {} };
   }
 }

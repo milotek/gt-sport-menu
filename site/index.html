@@ -37,9 +37,9 @@
           <span class="gt-glyph" aria-hidden="true">GT</span>
         </button>
         <nav class="modes" aria-label="Modes">
-          <button class="mode nav" type="button" data-group="top" data-balloon="Single-player races against the AI"><i class="ti ti-steering-wheel"></i><span>Arcade</span><em></em></button>
-          <button class="mode nav" type="button" data-group="top" data-balloon="Driving School, Mission Challenges, Circuit Experience and GT League"><i class="ti ti-grid-dots"></i><span>Campaign</span><em></em></button>
-          <button class="mode nav" type="button" data-group="top" data-balloon="Daily Races and FIA Gran Turismo Championships"><i class="ti ti-laurel-wreath"></i><span>Sport</span></button>
+          <button class="mode nav" type="button" data-group="top" data-mode="arcade" aria-haspopup="menu" aria-expanded="false" data-balloon="Single-player races against the AI"><i class="ti ti-steering-wheel"></i><span>Arcade</span><em></em></button>
+          <button class="mode nav" type="button" data-group="top" data-mode="campaign" aria-haspopup="menu" aria-expanded="false" data-balloon="Driving School, Mission Challenges, Circuit Experience and GT League"><i class="ti ti-grid-dots"></i><span>Campaign</span><em></em></button>
+          <button class="mode nav" type="button" data-group="top" data-mode="sport" aria-haspopup="menu" aria-expanded="false" data-balloon="Daily Races and FIA Gran Turismo Championships"><i class="ti ti-laurel-wreath"></i><span>Sport</span></button>
           <button class="mode nav badge" type="button" data-group="top" data-balloon="Buy cars from manufacturers around the world"><i class="ti ti-building-bank"></i><span>Brand Central</span></button>
           <button class="mode nav" type="button" data-group="top" data-balloon="Race online with players from around the world"><i class="ti ti-world"></i><span>Lobby</span></button>
           <button class="mode nav" type="button" data-group="top" data-balloon="Photograph your cars in locations around the world"><i class="ti ti-camera"></i><span>Scapes</span></button>
@@ -119,6 +119,7 @@
         </button>
       </footer>
 
+      <div id="mode-menu" class="mode-menu" role="menu" hidden></div>
       <div id="balloon" class="balloon" role="tooltip" hidden></div>
       <div id="toast" class="toast" role="status" hidden></div>
     </main>
@@ -190,6 +191,20 @@
           <label class="check"><input id="favorites-only" type="checkbox"><span>Favourites only</span></label>
         </div>
         <ol id="track-list" class="track-list"></ol>
+      </details>
+
+      <details id="sfx-section">
+        <summary>UI sounds</summary>
+        <p class="hint">No genuine GT Sport cursor, select or back sounds are publicly available, so none are bundled. Add your own recordings for each cue.</p>
+        <div class="sfx-cues">
+          <label class="file-pick"><input id="sfx-move" type="file" accept="audio/*" data-cue="move"><span><i class="ti ti-pointer"></i> Move <small id="sfx-move-name"></small></span></label>
+          <label class="file-pick"><input id="sfx-select" type="file" accept="audio/*" data-cue="select"><span><i class="ti ti-circle-check"></i> Select <small id="sfx-select-name"></small></span></label>
+          <label class="file-pick"><input id="sfx-back" type="file" accept="audio/*" data-cue="back"><span><i class="ti ti-arrow-back-up"></i> Back <small id="sfx-back-name"></small></span></label>
+        </div>
+        <div class="row">
+          <input id="sfx-volume" type="range" min="0" max="100" value="50" aria-label="UI sound volume">
+          <label class="check"><input id="sfx-mute" type="checkbox"><span>Mute</span></label>
+        </div>
       </details>
 
       <details id="display-section">

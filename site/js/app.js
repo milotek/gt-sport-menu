@@ -1,6 +1,7 @@
 import { resolveSeason } from "./season.js";
 import { Music } from "./music.js";
-import { addFiles, listFiles, clearFiles, folderManifest } from "./local_media.js";
+import { addFiles, listFiles, clearFiles, folderManifest, replaceKind } from "./local_media.js";
+import { Sfx, CUES } from "./sfx.js";
 
 const $ = (s) => document.querySelector(s);
 const PREFS_KEY = "gt-sport-menu";
@@ -19,6 +20,8 @@ const DEFAULTS = {
   favoritesOnly: false,
   favorites: [],
   ambienceIdle: 0,
+  sfxVolume: 50,
+  sfxMuted: false,
 };
 const prefs = Object.assign(structuredClone(DEFAULTS), JSON.parse(localStorage.getItem(PREFS_KEY) || "{}"));
 if (prefs.source === "youtube") prefs.source = "soundtrack";
@@ -37,6 +40,8 @@ const now = () => (window.__gtNow ? new Date(window.__gtNow) : new Date());
 let season = resolveSeason(prefs.season, now(), catalog.christmasWindow);
 let userImages = [];
 let userAudio = [];
+let userSfx = {};
+const sfx = new Sfx();
 
 const layers = [...document.querySelectorAll(".backdrop .scape")];
 let front = 0;
@@ -256,9 +261,17 @@ async function loadUserMedia() {
   const manifest = await folderManifest();
   const audio = await listFiles("audio");
   const images = await listFiles("image");
-  for (const u of [...userAudio, ...userImages]) {
+  for (const u of [...userAudio, ...userImages, ...Object.values(userSfx)]) {
     if (u.src.startsWith("blob:")) URL.revokeObjectURL(u.src);
   }
+  userSfx = {};
+  for (const [cue, file] of Object.entries(manifest.sfx)) userSfx[cue] = { src: `media/local/${file}`, name: file };
+  for (const cue of CUES) {
+    const [f] = await listFiles(`sfx-${cue}`);
+    if (f) userSfx[cue] = { src: URL.createObjectURL(f.blob), name: f.name };
+    $(`#sfx-${cue}-name`).textContent = userSfx[cue] ? `· ${userSfx[cue].name}` : "· none";
+  }
+  sfx.load(userSfx);
   userAudio = [
     ...manifest.audio.map((a) => ({ ...a, src: `media/local/${a.file}` })),
     ...audio.map((f) => ({ title: f.name.replace(/\.[^.]+$/, ""), artist: "Your file", src: URL.createObjectURL(f.blob) })),
@@ -268,6 +281,73 @@ async function loadUserMedia() {
     ...images.map((f) => ({ src: URL.createObjectURL(f.blob), title: f.name, kind: "user", credit: "imported in this browser" })),
   ];
   $("#local-count").textContent = `${userAudio.length} audio file${userAudio.length === 1 ? "" : "s"}, ${userImages.length} image${userImages.length === 1 ? "" : "s"} saved in this browser or local folder.`;
+}
+
+let openMode;
+
+function closeModeMenu(refocus = true) {
+  if (!openMode) return false;
+  const btn = openMode;
+  openMode = undefined;
+  btn.setAttribute("aria-expanded", "false");
+  $("#mode-menu").hidden = true;
+  if (refocus) btn.focus({ preventScroll: true });
+  return true;
+}
+
+function openModeMenu(btn) {
+  closeModeMenu(false);
+  const menu = $("#mode-menu");
+  menu.replaceChildren(
+    ...catalog.modeMenus[btn.dataset.mode].map((item) => {
+      const li = document.createElement("li");
+      const b = document.createElement("button");
+      b.type = "button";
+      b.setAttribute("role", "menuitem");
+      b.style.setProperty("--item", item.color);
+      b.innerHTML = `<i class="ti ${item.icon}"></i><b></b>${item.detail ? "<small></small>" : ""}`;
+      b.querySelector("b").textContent = item.label;
+      if (item.detail) b.querySelector("small").textContent = item.detail;
+      b.addEventListener("pointerenter", (e) => e.pointerType === "mouse" && b.focus({ preventScroll: true }));
+      b.addEventListener("focus", () => sfx.play("move", b));
+      b.addEventListener("click", () => {
+        sfx.play("select", b);
+        showToast(item.label);
+      });
+      li.append(b);
+      return li;
+    }),
+  );
+  const stage = $("#top-screen").getBoundingClientRect();
+  const r = btn.getBoundingClientRect();
+  menu.style.top = `${r.bottom - stage.top}px`;
+  menu.hidden = false;
+  menu.style.left = `${Math.floor(Math.max(0, Math.min(r.left - stage.left, stage.width - menu.getBoundingClientRect().width)))}px`;
+  btn.setAttribute("aria-expanded", "true");
+  openMode = btn;
+  balloonFor(null);
+  menu.querySelector("button").focus({ preventScroll: true });
+}
+
+function modeMenuKey(e) {
+  const items = [...$("#mode-menu").querySelectorAll("button")];
+  const i = items.indexOf(document.activeElement);
+  if (e.key === "ArrowDown" || e.key === "ArrowUp") {
+    items[(i + (e.key === "ArrowDown" ? 1 : -1) + items.length) % items.length].focus({ preventScroll: true });
+  } else if (e.key === "ArrowLeft" || e.key === "ArrowRight") {
+    const modes = [...document.querySelectorAll(".mode")];
+    const next = modes[modes.indexOf(openMode) + (e.key === "ArrowRight" ? 1 : -1)];
+    if (next?.dataset.mode) openModeMenu(next);
+    else if (next) {
+      closeModeMenu(false);
+      next.focus();
+    }
+  } else if (e.key === "Escape" || e.key === "Backspace") {
+    sfx.play("back", openMode);
+    closeModeMenu();
+  } else return false;
+  e.preventDefault();
+  return true;
 }
 
 function showToast(title) {
@@ -320,6 +400,7 @@ function moveFocus(dx, dy) {
 }
 
 function toggleSettings(open = $("#settings").hidden) {
+  if (open === $("#settings").hidden) sfx.play(open ? "select" : "back", $("#settings"));
   $("#settings").hidden = !open;
   $("#settings-toggle").setAttribute("aria-expanded", String(open));
   if (open) $("#settings input:checked")?.focus();
@@ -383,6 +464,10 @@ function syncControls() {
   for (const r of document.querySelectorAll('input[name="xmas-mix"]')) r.checked = r.value === prefs.xmasMix;
   for (const c of document.querySelectorAll("#packs input")) c.checked = prefs.packs.includes(c.value);
   $("#volume").value = prefs.volume;
+  $("#sfx-volume").value = prefs.sfxVolume;
+  $("#sfx-mute").checked = prefs.sfxMuted;
+  sfx.volume = prefs.sfxVolume;
+  sfx.muted = prefs.sfxMuted;
   $("#slideshow").checked = prefs.slideshow;
   $("#slide-interval").value = String(prefs.slideInterval);
   $("#ambience-idle").value = String(prefs.ambienceIdle);
@@ -458,6 +543,25 @@ function wireSettings() {
     refreshPool();
   });
   $("#track-search").addEventListener("input", renderPool);
+  for (const input of document.querySelectorAll(".sfx-cues input")) {
+    input.addEventListener("change", async (e) => {
+      if (!e.target.files.length) return;
+      await replaceKind(`sfx-${e.target.dataset.cue}`, [e.target.files[0]]);
+      e.target.value = "";
+      await loadUserMedia();
+      sfx.play(e.target.dataset.cue, e.target);
+    });
+  }
+  $("#sfx-volume").addEventListener("input", (e) => {
+    prefs.sfxVolume = Number(e.target.value);
+    sfx.volume = prefs.sfxVolume;
+    savePrefs();
+  });
+  $("#sfx-mute").addEventListener("change", (e) => {
+    prefs.sfxMuted = e.target.checked;
+    sfx.muted = prefs.sfxMuted;
+    savePrefs();
+  });
   $("#volume").addEventListener("input", (e) => {
     prefs.volume = Number(e.target.value);
     savePrefs();
@@ -521,18 +625,38 @@ function wireSettings() {
 
 function wireMenu() {
   for (const el of navItems()) {
-    el.addEventListener("mouseenter", () => balloonFor(el));
+    el.addEventListener("pointerenter", (e) => {
+      if (e.pointerType === "mouse" && (!openMode || openMode === el)) el.focus({ preventScroll: true });
+      balloonFor(el);
+    });
     el.addEventListener("mouseleave", () => balloonFor(null));
-    el.addEventListener("focus", () => balloonFor(el));
+    el.addEventListener("focus", () => {
+      sfx.play("move", el);
+      if (!openMode) balloonFor(el);
+    });
     el.addEventListener("blur", () => balloonFor(null));
     el.addEventListener("click", () => {
+      if (el.dataset.mode) {
+        if (openMode === el) {
+          sfx.play("back", el);
+          return closeModeMenu();
+        }
+        sfx.play("select", el);
+        return openModeMenu(el);
+      }
+      closeModeMenu(false);
       if (el.id === "gt-menu") return toggleSettings(true);
+      sfx.play("select", el);
       const label = el.querySelector("span")?.textContent || el.dataset.balloon || "This feature";
       showToast(label);
     });
   }
+  document.addEventListener("pointerdown", (e) => {
+    if (openMode && !e.target.closest("#mode-menu, .mode")) closeModeMenu(false);
+  });
   document.addEventListener("keydown", (e) => {
     if ($("#top-screen").hidden || e.target.matches("input[type=range], input[type=file], input[type=search], select")) return;
+    if (openMode && modeMenuKey(e)) return;
     const inSettings = !$("#settings").hidden && $("#settings").contains(e.target);
     const dirs = { ArrowLeft: [-1, 0], ArrowRight: [1, 0], ArrowUp: [0, -1], ArrowDown: [0, 1] };
     const key = e.ctrlKey || e.metaKey || e.altKey ? "" : e.key.toLowerCase();
@@ -577,6 +701,7 @@ async function enter() {
   wireMenu();
   navItems()[1]?.focus({ preventScroll: true });
   music.setVolume(prefs.volume);
+  sfx.unlocked = true;
   await playMusic();
 }
 
