@@ -45,7 +45,8 @@
   </main>
   <script type="module">
     const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" })[c]);
-    const [c, st, ex] = await Promise.all([fetch("data/catalog.json").then((r) => r.json()), fetch("data/soundtrack.json").then((r) => r.json()), fetch("data/extended.json").then((r) => r.json())]);
+    const [c, st, series, cov] = await Promise.all([fetch("data/catalog.json").then((r) => r.json()), fetch("data/soundtrack.json").then((r) => r.json()), fetch("data/extended.json").then((r) => r.json()), fetch("data/coverage.json").then((r) => r.json())]);
+    const ex = { ...series, packs: { ...series.packs, ...cov.packs }, tracks: [...series.tracks, ...cov.tracks], excluded: Object.fromEntries(Object.keys({ ...series.excluded, ...cov.excluded }).map((g) => [g, [...(series.excluded[g] ?? []), ...(cov.excluded[g] ?? [])]])) };
     const w = c.christmasWindow;
     const x = c.christmasMusic;
     const rows = (list) => `<table><tr><th>Artist</th><th>Title</th><th>Length</th><th>Source</th></tr>
@@ -68,8 +69,8 @@
       <ul>${st.missing.map((m) => `<li class="gap">${esc(m)}</li>`).join("")}</ul>
       ${rows(menu)}`;
     const typed = (list) => `<table><tr><th>Artist</th><th>Title</th><th>Type</th><th>Also in</th><th>Source</th></tr>
-      ${list.map((t) => `<tr><td>${esc(t.artist)}</td><td>${esc(t.title)}</td><td>${esc(t.type)}${t.season === "christmas" ? ", Christmas" : ""}</td><td>${esc(t.appearsIn.filter((g) => g !== t.game).map((g) => ex.packs[g].label).join(", "))}</td><td><a href="${esc(t.src)}">${esc(t.origin)}</a></td></tr>`).join("")}</table>`;
-    const order = Object.entries(ex.packs).filter(([id]) => id !== "gtsport").concat([["gtsport", ex.packs.gtsport]]);
+      ${list.map((t) => `<tr><td>${esc(t.artist)}</td><td>${esc(t.title)}</td><td>${esc(t.type)}${t.season === "christmas" ? ", Christmas" : ""}</td><td>${esc(t.appearsIn.filter((g) => g !== t.game).map((g) => ex.packs[g].label).join(", "))}</td><td><a href="${esc(t.src)}">${esc(t.album ?? t.origin)}</a></td></tr>`).join("")}</table>`;
+    const order = Object.entries(ex.packs).filter(([id]) => id !== "gtsport").sort(([, a], [, b]) => a.year - b.year).concat([["gtsport", ex.packs.gtsport]]);
     document.querySelector("#extended").innerHTML = `
       <p>Off by default. Every pack streams from the same archive.org upload (<a href="${esc(ex.source)}">${esc(ex.source)}</a>). Type is Menu or Race only where a source says so: the vgost.fandom.com Default BGM tables (GT2, GT5, GT6, GT7), Isamu Ohira's menu composer credit (GT2 to GT4) and the GT7 Christmas jazz album (<a href="https://ototoy.jp/_/default/p/1938367">label listing</a>). Everything else is unclassified. A recording shared between games is listed once under the first game and plays once.</p>
       ${order.map(([id, p]) => {

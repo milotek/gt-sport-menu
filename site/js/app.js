@@ -29,12 +29,18 @@ if (prefs.source === "youtube") prefs.source = "soundtrack";
 const savePrefs = () => localStorage.setItem(PREFS_KEY, JSON.stringify(prefs));
 const reducedMotion = matchMedia("(prefers-reduced-motion: reduce)");
 
-const [catalog, soundtrack, extended] = await Promise.all([
+const [catalog, soundtrack, series, coverage] = await Promise.all([
   fetch("data/catalog.json").then((r) => r.json()),
   fetch("data/soundtrack.json").then((r) => r.json()),
   fetch("data/extended.json").then((r) => r.json()),
+  fetch("data/coverage.json").then((r) => r.json()),
 ]);
-const allTracks = [...soundtrack.tracks, ...extended.tracks];
+const extended = {
+  packs: Object.fromEntries(
+    Object.entries({ ...series.packs, ...coverage.packs }).sort(([a, x], [b, y]) => (b === "gtsport") - (a === "gtsport") || x.year - y.year),
+  ),
+};
+const allTracks = [...soundtrack.tracks, ...series.tracks, ...coverage.tracks];
 const gamesOf = (t) => t.appearsIn ?? [t.game];
 const gameLabel = (t) => gamesOf(t).map((g) => extended.packs[g]?.label).filter(Boolean).join(" · ");
 const typeOf = (t) => t.type ?? "menu";

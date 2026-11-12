@@ -90,7 +90,7 @@ test("defaults keep the GT Sport view and playlist, and the GT Menu opens Option
   await openOptions(page, "extended");
   await expect(page.locator("#extended")).not.toBeChecked();
   expect(await poolGames(page)).toEqual({ "GT Sport": 63 });
-  await expect(page.locator("#packs label")).toHaveText([/GT Sport \(2017\) · 116 tracks/, /GT \(1997\) · 21 tracks/, /GT2 \(1999\) · 20 tracks/, /GT3 \(2001\) · 15 tracks/, /GT4 \(2004\) · 22 tracks/, /GT5 \(2010\) · 36 tracks/, /GT6 \(2013\) · 159 tracks/, /GT7 \(2022\) · 251 tracks/]);
+  await expect(page.locator("#packs label")).toHaveText([/GT Sport \(2017\) · 116 tracks/, /GT \(1997\) · 56 tracks/, /GT2 \(1999\) · 60 tracks/, /GT3 \(2001\) · 16 tracks/, /GT4 \(2004\) · 22 tracks/, /GT PSP \(2009\) · 13 tracks/, /GT5 \(2010\) · 36 tracks/, /GT6 \(2013\) · 159 tracks/, /GT7 \(2022\) · 251 tracks/]);
   await expect(page.locator('input[name="track-type"][value="menu"]')).toBeChecked();
   await expect(page.locator('input[name="xmas-mix"][value="holiday"]')).toBeChecked();
   expect(errors).toEqual([]);
@@ -343,17 +343,52 @@ test("track type filter reaches race and unclassified series tracks and plays th
   expect(await poolGames(page)).toEqual({ GT6: 159 });
   await page.locator("#packs label", { hasText: "GT6" }).click();
   await page.locator("#packs label", { hasText: /^GT \(1997\)/ }).click();
-  expect(await poolGames(page)).toEqual({ GT: 21 });
+  expect(await poolGames(page)).toEqual({ GT: 56 });
   await expect.poll(async () => meta((await audio(page)).src)?.game, { timeout: 30000 }).toBe("gt1");
   const gt1 = await expectAdvancing(page);
   expect(meta(gt1.src).type).toBe("unclassified");
   await page.locator('label:has(input[name="track-type"][value="menu"])').click();
   await page.locator("#packs label", { hasText: "GT2" }).click();
-  expect(await poolGames(page)).toEqual({ GT2: 10 });
+  expect(await poolGames(page)).toEqual({ GT: 14, GT2: 35 });
   await page.reload();
   await expect(page.locator("body")).toHaveAttribute("data-ready", "true");
   await expect(page.locator('input[name="track-type"][value="menu"]')).toBeChecked();
   await page.screenshot({ path: `${SHOTS}/19_series_packs.png` });
   test.info().annotations.push({ type: "playback", description: JSON.stringify({ race: race.src, unclassified: gt1.src }) });
   expect([...hosts].filter((h) => /youtube|ytimg|googlevideo/.test(h))).toEqual([]);
+});
+
+test("GT PSP and regional edition packs play natively from their own archive.org items @network", async ({ page }) => {
+  test.setTimeout(300000);
+  const hosts = new Set();
+  page.on("request", (r) => hosts.add(new URL(r.url()).hostname));
+  await open(page, { prefs: { source: "soundtrack", extended: true, packs: ["gtpsp"], trackType: "all" } });
+  await enter(page);
+  expect(await poolGames(page)).toEqual({ "GT PSP": 13 });
+  const cov = await page.evaluate(() => fetch("data/coverage.json").then((r) => r.json()));
+  const meta = (src) => cov.tracks.find((t) => t.src === src);
+  const played = [];
+  const psp = await expectAdvancing(page);
+  expect(meta(psp.src).game).toBe("gtpsp");
+  expect(psp.src).toContain("polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack");
+  expect(await energy(page)).toBeGreaterThan(0.005);
+  const duration = await page.locator("#music").evaluate((el) => el.duration);
+  if (Number.isFinite(duration)) expect(Math.abs(duration - meta(psp.src).seconds)).toBeLessThan(3);
+  played.push({ src: psp.src, manifestSeconds: meta(psp.src).seconds, elementDuration: duration });
+  await expect(page.locator("#track-artist")).toContainText("GT PSP");
+  for (const [game, needle] of [["gt1", "scus-94194-bgm-15_202302"], ["gt2", "gran-turismo-2-usa-simulation-mode-rev-1"]]) {
+    const pick = cov.tracks.find((t) => t.game === game && t.src.includes(needle));
+    await openOptions(page, "extended", "browser");
+    await page.locator("#packs label", { hasText: new RegExp(`^${game === "gt1" ? "GT \\(1997\\)" : "GT2 "}`) }).click();
+    await page.fill("#track-search", pick.album.slice(0, 20));
+    await page.locator("#track-list li", { hasText: pick.title }).first().locator(".pick").click();
+    await expect.poll(async () => (await audio(page)).src, { timeout: 30000 }).toBe(pick.src);
+    const a = await expectAdvancing(page);
+    played.push({ src: a.src, manifestSeconds: pick.seconds });
+    await page.fill("#track-search", "");
+  }
+  test.info().annotations.push({ type: "playback", description: JSON.stringify(played) });
+  await page.mouse.move(960, 600);
+  await page.screenshot({ path: `${SHOTS}/20_psp_regional_packs.png` });
+  expect([...hosts].filter((h) => /youtube|ytimg|googlevideo|khinsider|vgmtreasurechest/.test(h))).toEqual([]);
 });

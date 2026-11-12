@@ -60,6 +60,7 @@ Packs cover GT (1997), GT2, GT3, GT4, GT5, GT6, GT Sport's Transmission Mode fol
 - A recording shared between games is listed once and labelled with every game it appears in.
 - GT7 has 12 Christmas tracks: the 11 tracks of GRAN TURISMO 7 JAZZ SELECTION BEST LAP vol.2 plus CHRISTMAS TREE. In Christmas season, extended music plays only the selected packs' holiday tracks unless "Christmas: mix all" is chosen. Packs without holiday tracks fall back to GT Sport's Christmas tracks.
 - Jingles and short cues are not listed.
+- `tools/build_coverage_packs.py` adds `site/data/coverage.json` from separate archive.org items: a GT PSP pack, the NTSC-U GT1 game rip, a GT2 game rip with in-game usage labels, NTSC-U GT2 Simulation Mode and one NTSC-U GT3 Arcade Mode track. Menu type there comes from the screen named in each file's title.
 
 To swap in your own recordings, such as MIDI remakes, put them under `site/media/` and change each track's `src` to the relative path.
 Anything else in the entry (title, artist, season) drives the playlists and the now-playing banner.

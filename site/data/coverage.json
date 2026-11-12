@@ -1,0 +1,1722 @@
+{
+  "about": "Additional editions and games from separate archive.org items. Each src streams from archive.org.",
+  "packs": {
+    "gtpsp": {
+      "label": "GT PSP",
+      "year": 2009
+    }
+  },
+  "excluded": {
+    "gt1": [
+      "SCUS-94194_BGM03 (Gran Turismo (NTSC-U, SCUS-94194) game rip, 8s cue)",
+      "SCUS-94194_BGM09 (Gran Turismo (NTSC-U, SCUS-94194) game rip, 9s cue)",
+      "SCUS-94194_BGM16 (Gran Turismo (NTSC-U, SCUS-94194) game rip, 9s cue)",
+      "SCUS-94194_BGM22 (Gran Turismo (NTSC-U, SCUS-94194) game rip, 7s cue)",
+      "SCUS-94194_BGM23 (Gran Turismo (NTSC-U, SCUS-94194) game rip, 5s cue)"
+    ],
+    "gt2": [
+      "Championship Prize (Gran Turismo 2 game rip with in-game usage labels, 64s cue)",
+      "Company Car Race (Gran Turismo 2 game rip with in-game usage labels, 7s cue)",
+      "World Championship Race (Gran Turismo 2 game rip with in-game usage labels, 12s cue)",
+      "Race Start (Gran Turismo 2 game rip with in-game usage labels, 9s cue)",
+      "Finish! (Gran Turismo 2 game rip with in-game usage labels, 7s cue)",
+      "400m Finish! (Gran Turismo 2 game rip with in-game usage labels, 5s cue)",
+      "Gold Rush (1st Place Prize) (Gran Turismo 2 game rip with in-game usage labels, 52s cue)",
+      "2nd-6th Place Prize (Gran Turismo 2 game rip with in-game usage labels, 65s cue)",
+      "Race Lose (Gran Turismo 2 game rip with in-game usage labels, 36s cue)"
+    ]
+  },
+  "tracks": [
+    {
+      "id": "gtpsp_polyphony_digital_a_m_gran_turismo_psp_original_game_soundtrack_main_menu",
+      "game": "gtpsp",
+      "type": "menu",
+      "season": "normal",
+      "title": "Main Menu",
+      "artist": "Polyphony Digital & aM",
+      "album": "Gran Turismo PSP (Original Game Soundtrack)",
+      "seconds": 163,
+      "bytes": 3813868,
+      "src": "https://archive.org/download/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack/01%20Main%20Menu.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack",
+      "basis": "In-game screen named in the uploader's track title; Originals are WMA; the src is archive.org's own MP3 derivative of each file",
+      "appearsIn": [
+        "gtpsp"
+      ]
+    },
+    {
+      "id": "gtpsp_polyphony_digital_a_m_gran_turismo_psp_original_game_soundtrack_dealerships",
+      "game": "gtpsp",
+      "type": "menu",
+      "season": "normal",
+      "title": "Dealerships",
+      "artist": "Polyphony Digital & aM",
+      "album": "Gran Turismo PSP (Original Game Soundtrack)",
+      "seconds": 114,
+      "bytes": 2799312,
+      "src": "https://archive.org/download/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack/02%20Dealerships.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack",
+      "basis": "In-game screen named in the uploader's track title; Originals are WMA; the src is archive.org's own MP3 derivative of each file",
+      "appearsIn": [
+        "gtpsp"
+      ]
+    },
+    {
+      "id": "gtpsp_polyphony_digital_a_m_gran_turismo_psp_original_game_soundtrack_driving_challenge",
+      "game": "gtpsp",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "Driving Challenge",
+      "artist": "Polyphony Digital & aM",
+      "album": "Gran Turismo PSP (Original Game Soundtrack)",
+      "seconds": 146,
+      "bytes": 3388056,
+      "src": "https://archive.org/download/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack/03%20Driving%20Challenge.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack",
+      "basis": "No menu or race evidence found; Originals are WMA; the src is archive.org's own MP3 derivative of each file",
+      "appearsIn": [
+        "gtpsp"
+      ]
+    },
+    {
+      "id": "gtpsp_polyphony_digital_a_m_gran_turismo_psp_original_game_soundtrack_step_a_b_c",
+      "game": "gtpsp",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "STEP A, B, C",
+      "artist": "Polyphony Digital & aM",
+      "album": "Gran Turismo PSP (Original Game Soundtrack)",
+      "seconds": 150,
+      "bytes": 3208466,
+      "src": "https://archive.org/download/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack/04%20STEP%20A%2C%20B%2C%20C.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack",
+      "basis": "No menu or race evidence found; Originals are WMA; the src is archive.org's own MP3 derivative of each file",
+      "appearsIn": [
+        "gtpsp"
+      ]
+    },
+    {
+      "id": "gtpsp_polyphony_digital_a_m_gran_turismo_psp_original_game_soundtrack_step_d_e_f",
+      "game": "gtpsp",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "STEP D, E, F",
+      "artist": "Polyphony Digital & aM",
+      "album": "Gran Turismo PSP (Original Game Soundtrack)",
+      "seconds": 169,
+      "bytes": 3906934,
+      "src": "https://archive.org/download/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack/05%20STEP%20D%2C%20E%2C%20F.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack",
+      "basis": "No menu or race evidence found; Originals are WMA; the src is archive.org's own MP3 derivative of each file",
+      "appearsIn": [
+        "gtpsp"
+      ]
+    },
+    {
+      "id": "gtpsp_polyphony_digital_a_m_gran_turismo_psp_original_game_soundtrack_step_g_h_i",
+      "game": "gtpsp",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "STEP G, H, I",
+      "artist": "Polyphony Digital & aM",
+      "album": "Gran Turismo PSP (Original Game Soundtrack)",
+      "seconds": 168,
+      "bytes": 3402987,
+      "src": "https://archive.org/download/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack/06%20STEP%20G%2C%20H%2C%20I.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack",
+      "basis": "No menu or race evidence found; Originals are WMA; the src is archive.org's own MP3 derivative of each file",
+      "appearsIn": [
+        "gtpsp"
+      ]
+    },
+    {
+      "id": "gtpsp_polyphony_digital_a_m_gran_turismo_psp_original_game_soundtrack_step_j_k_l",
+      "game": "gtpsp",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "STEP J, K, L",
+      "artist": "Polyphony Digital & aM",
+      "album": "Gran Turismo PSP (Original Game Soundtrack)",
+      "seconds": 157,
+      "bytes": 3666515,
+      "src": "https://archive.org/download/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack/07%20STEP%20J%2C%20K%2C%20L.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack",
+      "basis": "No menu or race evidence found; Originals are WMA; the src is archive.org's own MP3 derivative of each file",
+      "appearsIn": [
+        "gtpsp"
+      ]
+    },
+    {
+      "id": "gtpsp_polyphony_digital_a_m_gran_turismo_psp_original_game_soundtrack_step_m_n_o",
+      "game": "gtpsp",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "STEP M, N, O",
+      "artist": "Polyphony Digital & aM",
+      "album": "Gran Turismo PSP (Original Game Soundtrack)",
+      "seconds": 155,
+      "bytes": 3546780,
+      "src": "https://archive.org/download/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack/08%20STEP%20M%2C%20N%2C%20O.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack",
+      "basis": "No menu or race evidence found; Originals are WMA; the src is archive.org's own MP3 derivative of each file",
+      "appearsIn": [
+        "gtpsp"
+      ]
+    },
+    {
+      "id": "gtpsp_polyphony_digital_a_m_gran_turismo_psp_original_game_soundtrack_step_p_q",
+      "game": "gtpsp",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "STEP P, Q",
+      "artist": "Polyphony Digital & aM",
+      "album": "Gran Turismo PSP (Original Game Soundtrack)",
+      "seconds": 123,
+      "bytes": 2776919,
+      "src": "https://archive.org/download/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack/09%20STEP%20P%2C%20Q.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack",
+      "basis": "No menu or race evidence found; Originals are WMA; the src is archive.org's own MP3 derivative of each file",
+      "appearsIn": [
+        "gtpsp"
+      ]
+    },
+    {
+      "id": "gtpsp_polyphony_digital_a_m_gran_turismo_psp_original_game_soundtrack_single_player",
+      "game": "gtpsp",
+      "type": "menu",
+      "season": "normal",
+      "title": "Single Player",
+      "artist": "Polyphony Digital & aM",
+      "album": "Gran Turismo PSP (Original Game Soundtrack)",
+      "seconds": 134,
+      "bytes": 2940048,
+      "src": "https://archive.org/download/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack/10%20Single%20Player.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack",
+      "basis": "In-game screen named in the uploader's track title; Originals are WMA; the src is archive.org's own MP3 derivative of each file",
+      "appearsIn": [
+        "gtpsp"
+      ]
+    },
+    {
+      "id": "gtpsp_polyphony_digital_a_m_gran_turismo_psp_original_game_soundtrack_multiplayer",
+      "game": "gtpsp",
+      "type": "menu",
+      "season": "normal",
+      "title": "Multiplayer",
+      "artist": "Polyphony Digital & aM",
+      "album": "Gran Turismo PSP (Original Game Soundtrack)",
+      "seconds": 166,
+      "bytes": 4065214,
+      "src": "https://archive.org/download/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack/11%20Multiplayer.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack",
+      "basis": "In-game screen named in the uploader's track title; Originals are WMA; the src is archive.org's own MP3 derivative of each file",
+      "appearsIn": [
+        "gtpsp"
+      ]
+    },
+    {
+      "id": "gtpsp_polyphony_digital_a_m_gran_turismo_psp_original_game_soundtrack_pre_race",
+      "game": "gtpsp",
+      "type": "menu",
+      "season": "normal",
+      "title": "Pre-race",
+      "artist": "Polyphony Digital & aM",
+      "album": "Gran Turismo PSP (Original Game Soundtrack)",
+      "seconds": 179,
+      "bytes": 3926241,
+      "src": "https://archive.org/download/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack/12%20Pre-race.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack",
+      "basis": "In-game screen named in the uploader's track title; Originals are WMA; the src is archive.org's own MP3 derivative of each file",
+      "appearsIn": [
+        "gtpsp"
+      ]
+    },
+    {
+      "id": "gtpsp_polyphony_digital_a_m_gran_turismo_psp_original_game_soundtrack_status_report_gt_theatre_user_manual",
+      "game": "gtpsp",
+      "type": "menu",
+      "season": "normal",
+      "title": "Status Report, GT Theatre, User Manual",
+      "artist": "Polyphony Digital & aM",
+      "album": "Gran Turismo PSP (Original Game Soundtrack)",
+      "seconds": 97,
+      "bytes": 2042720,
+      "src": "https://archive.org/download/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack/13%20Status%20Report%2C%20GT%20Theatre%2C%20User%20Manual.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/polyphony-digital-a-m-gran-turismo-psp-original-game-soundtrack",
+      "basis": "In-game screen named in the uploader's track title; Originals are WMA; the src is archive.org's own MP3 derivative of each file",
+      "appearsIn": [
+        "gtpsp"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_scus_94194_bgm01",
+      "game": "gt1",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "SCUS-94194_BGM01",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 215,
+      "bytes": 8611200,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/SCUS-94194_BGM01.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_scus_94194_bgm02",
+      "game": "gt1",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "SCUS-94194_BGM02",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 278,
+      "bytes": 11124000,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/SCUS-94194_BGM02.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_scus_94194_bgm04",
+      "game": "gt1",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "SCUS-94194_BGM04",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 118,
+      "bytes": 4714560,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/SCUS-94194_BGM04.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_scus_94194_bgm05",
+      "game": "gt1",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "SCUS-94194_BGM05",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 112,
+      "bytes": 4481280,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/SCUS-94194_BGM05.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_scus_94194_bgm06",
+      "game": "gt1",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "SCUS-94194_BGM06",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 283,
+      "bytes": 11321280,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/SCUS-94194_BGM06.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_scus_94194_bgm07",
+      "game": "gt1",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "SCUS-94194_BGM07",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 254,
+      "bytes": 10162080,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/SCUS-94194_BGM07.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_scus_94194_bgm08",
+      "game": "gt1",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "SCUS-94194_BGM08",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 273,
+      "bytes": 10941120,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/SCUS-94194_BGM08.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_scus_94194_bgm10",
+      "game": "gt1",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "SCUS-94194_BGM10",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 60,
+      "bytes": 2404800,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/SCUS-94194_BGM10.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_scus_94194_bgm11",
+      "game": "gt1",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "SCUS-94194_BGM11",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 58,
+      "bytes": 2314080,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/SCUS-94194_BGM11.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_scus_94194_bgm12",
+      "game": "gt1",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "SCUS-94194_BGM12",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 87,
+      "bytes": 3461760,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/SCUS-94194_BGM12.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_scus_94194_bgm13",
+      "game": "gt1",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "SCUS-94194_BGM13",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 213,
+      "bytes": 8514720,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/SCUS-94194_BGM13.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_scus_94194_bgm14",
+      "game": "gt1",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "SCUS-94194_BGM14",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 236,
+      "bytes": 9424800,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/SCUS-94194_BGM14.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_scus_94194_bgm15",
+      "game": "gt1",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "SCUS-94194_BGM15",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 301,
+      "bytes": 12028320,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/SCUS-94194_BGM15.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_scus_94194_bgm17",
+      "game": "gt1",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "SCUS-94194_BGM17",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 68,
+      "bytes": 2734560,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/SCUS-94194_BGM17.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_scus_94194_bgm18",
+      "game": "gt1",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "SCUS-94194_BGM18",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 35,
+      "bytes": 1402560,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/SCUS-94194_BGM18.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_scus_94194_bgm19",
+      "game": "gt1",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "SCUS-94194_BGM19",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 68,
+      "bytes": 2701440,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/SCUS-94194_BGM19.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_scus_94194_bgm20",
+      "game": "gt1",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "SCUS-94194_BGM20",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 207,
+      "bytes": 8282880,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/SCUS-94194_BGM20.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_scus_94194_bgm21",
+      "game": "gt1",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "SCUS-94194_BGM21",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 242,
+      "bytes": 9695520,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/SCUS-94194_BGM21.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_scus_94194_bgm24",
+      "game": "gt1",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "SCUS-94194_BGM24",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 66,
+      "bytes": 2632320,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/SCUS-94194_BGM24.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_scus_94194_bgm25",
+      "game": "gt1",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "SCUS-94194_BGM25",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 198,
+      "bytes": 7925760,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/SCUS-94194_BGM25.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_arcade",
+      "game": "gt1",
+      "type": "menu",
+      "season": "normal",
+      "title": "arcade",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 81,
+      "bytes": 3244969,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/arcade.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_aston",
+      "game": "gt1",
+      "type": "menu",
+      "season": "normal",
+      "title": "aston",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 126,
+      "bytes": 5045316,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/aston.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_carwash",
+      "game": "gt1",
+      "type": "menu",
+      "season": "normal",
+      "title": "carwash",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 144,
+      "bytes": 5765243,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/carwash.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_chevy",
+      "game": "gt1",
+      "type": "menu",
+      "season": "normal",
+      "title": "chevy",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 123,
+      "bytes": 4925147,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/chevy.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_chrysler",
+      "game": "gt1",
+      "type": "menu",
+      "season": "normal",
+      "title": "chrysler",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 104,
+      "bytes": 4165504,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/chrysler.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_city",
+      "game": "gt1",
+      "type": "menu",
+      "season": "normal",
+      "title": "city",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 93,
+      "bytes": 3725594,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/city.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_home",
+      "game": "gt1",
+      "type": "menu",
+      "season": "normal",
+      "title": "home",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 108,
+      "bytes": 4325366,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/home.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_honda",
+      "game": "gt1",
+      "type": "menu",
+      "season": "normal",
+      "title": "honda",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 157,
+      "bytes": 6285596,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/honda.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_mazda",
+      "game": "gt1",
+      "type": "menu",
+      "season": "normal",
+      "title": "mazda",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 115,
+      "bytes": 4605400,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/mazda.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_mitsu",
+      "game": "gt1",
+      "type": "menu",
+      "season": "normal",
+      "title": "mitsu",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 113,
+      "bytes": 4524953,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/mitsu.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_nissan",
+      "game": "gt1",
+      "type": "menu",
+      "season": "normal",
+      "title": "nissan",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 250,
+      "bytes": 10005435,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/nissan.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_race",
+      "game": "gt1",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "race",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 115,
+      "bytes": 4605398,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/race.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_subaru",
+      "game": "gt1",
+      "type": "menu",
+      "season": "normal",
+      "title": "subaru",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 112,
+      "bytes": 4485239,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/subaru.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_toyota",
+      "game": "gt1",
+      "type": "menu",
+      "season": "normal",
+      "title": "toyota",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 148,
+      "bytes": 5925108,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/toyota.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt1_scus_94194_bgm_15_202302_tvr",
+      "game": "gt1",
+      "type": "menu",
+      "season": "normal",
+      "title": "tvr",
+      "artist": "Gran Turismo (NTSC-U)",
+      "album": "Gran Turismo (NTSC-U, SCUS-94194) game rip",
+      "seconds": 134,
+      "bytes": 5365037,
+      "src": "https://archive.org/download/scus-94194-bgm-15_202302/tvr.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/scus-94194-bgm-15_202302",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt1"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_moon_over_the_castle_main_theme",
+      "game": "gt2",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "Moon Over the Castle (Main Theme)",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 372,
+      "bytes": 14143784,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2001.%20Moon%20Over%20the%20Castle%20%28Main%20Theme%29.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_arcade_mode",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "Arcade Mode",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 240,
+      "bytes": 9116305,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2002.%20Arcade%20Mode.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_welcome_back_g_t_options",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "Welcome Back, G.T. (Options)",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 56,
+      "bytes": 3393297,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2003.%20Welcome%20Back%2C%20G.T.%20%28Options%29.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_the_real_motorious_city_data_transfer",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "The Real Motorious City (Data Transfer)",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 158,
+      "bytes": 6656128,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2004.%20The%20Real%20Motorious%20City%20%28Data%20Transfer%29.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_race_menu",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "Race Menu",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 129,
+      "bytes": 5476975,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2005.%20Race%20Menu.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_blowing_away",
+      "game": "gt2",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "Blowing Away",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 236,
+      "bytes": 9935284,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2010.%20Blowing%20Away.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_never_let_me_down",
+      "game": "gt2",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "Never Let Me Down",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 255,
+      "bytes": 10731787,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2011.%20Never%20Let%20Me%20Down.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_blade",
+      "game": "gt2",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "Blade",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 239,
+      "bytes": 9635224,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2012.%20Blade.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_call_of_the_wild",
+      "game": "gt2",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "Call of the Wild",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 280,
+      "bytes": 11554796,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2013.%20Call%20of%20the%20Wild.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_hot_tin_root",
+      "game": "gt2",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "Hot Tin Root",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 317,
+      "bytes": 12444914,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2014.%20Hot%20Tin%20Root.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_get_into_it",
+      "game": "gt2",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "Get Into It",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 248,
+      "bytes": 10519077,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2015.%20Get%20Into%20It.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_license_test",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "License Test",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 90,
+      "bytes": 4491970,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2021.%20License%20Test.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_blue_line",
+      "game": "gt2",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "Blue Line",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 310,
+      "bytes": 11690561,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2022.%20Blue%20Line.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_blue_line_instrumental",
+      "game": "gt2",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "Blue Line (Instrumental)",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 314,
+      "bytes": 12074264,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2023.%20Blue%20Line%20%28Instrumental%29.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_car_wash",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "Car Wash",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 251,
+      "bytes": 9131847,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2024.%20Car%20Wash.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_east_city",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "East City",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 259,
+      "bytes": 9386478,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2025.%20East%20City.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_north_city",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "North City",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 252,
+      "bytes": 9129095,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2026.%20North%20City.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_south_city",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "South City",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 234,
+      "bytes": 8598530,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2027.%20South%20City.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_west_city",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "West City",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 179,
+      "bytes": 6829590,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2028.%20West%20City.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_get_ready_go_race",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "Get Ready (Go Race)",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 257,
+      "bytes": 9484632,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2029.%20Get%20Ready%20%28Go%20Race%29.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_soul_of_garage_my_home",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "Soul of Garage (My Home)",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 207,
+      "bytes": 7595080,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2030.%20Soul%20of%20Garage%20%28My%20Home%29.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_the_drift_of_air_ver_2_map",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "The Drift of Air Ver. 2 (Map)",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 232,
+      "bytes": 8678248,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2031.%20The%20Drift%20of%20Air%20Ver.%202%20%28Map%29.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_poker_face_machine_test",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "Poker Face (Machine Test)",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 266,
+      "bytes": 9660539,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2032.%20Poker%20Face%20%28Machine%20Test%29.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_moon_over_the_castle_type_r",
+      "game": "gt2",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "Moon Over the Castle (Type-R)",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 310,
+      "bytes": 12428478,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2033.%20Moon%20Over%20the%20Castle%20%28Type-R%29.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_windroad_race_start_arcade_mode_arrange_version",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "Windroad (Race Start  Arcade Mode - Arrange Version)",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 78,
+      "bytes": 4416202,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2034.%20Windroad%20%28Race%20Start%20%20Arcade%20Mode%20-%20Arrange%20Version%29.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_you_made_it_finish_race_menu_arrange_version",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "You Made It! (Finish!  Race Menu - Arrange Version)",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 94,
+      "bytes": 4922064,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2035.%20You%20Made%20It%21%20%28Finish%21%20%20Race%20Menu%20-%20Arrange%20Version%29.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_gold_rush_arrange_version",
+      "game": "gt2",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "Gold Rush (Arrange Version)",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 31,
+      "bytes": 2773077,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2036.%20Gold%20Rush%20%28Arrange%20Version%29.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_from_the_east_arrange_version",
+      "game": "gt2",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "From the East (Arrange Version)",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 167,
+      "bytes": 7311118,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2037.%20From%20the%20East%20%28Arrange%20Version%29.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_get_ready_arrange_version",
+      "game": "gt2",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "Get Ready (Arrange Version)",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 103,
+      "bytes": 5332320,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2038.%20Get%20Ready%20%28Arrange%20Version%29.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_soul_of_garage_arrange_version",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "Soul of Garage (Arrange Version)",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 123,
+      "bytes": 5735423,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2039.%20Soul%20of%20Garage%20%28Arrange%20Version%29.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_the_drift_of_air_ver_2_arrange_version",
+      "game": "gt2",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "The Drift of Air Ver. 2 (Arrange Version)",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 226,
+      "bytes": 9517488,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2040.%20The%20Drift%20of%20Air%20Ver.%202%20%28Arrange%20Version%29.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_1999_ost_poker_face_arrange_version",
+      "game": "gt2",
+      "type": "unclassified",
+      "season": "normal",
+      "title": "Poker Face (Arrange Version)",
+      "artist": "Gran Turismo 2",
+      "album": "Gran Turismo 2 game rip with in-game usage labels",
+      "seconds": 82,
+      "bytes": 4637889,
+      "src": "https://archive.org/download/gran-turismo-2-1999-ost/Gran%20Turismo%202%20-%2041.%20Poker%20Face%20%28Arrange%20Version%29.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-1999-ost",
+      "basis": "No menu or race evidence found",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_usa_simulation_mode_rev_1_car_wash",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "Car Wash!!",
+      "artist": "Gran Turismo 2 (NTSC-U)",
+      "album": "Gran Turismo 2 (NTSC-U) Simulation Mode",
+      "seconds": 79,
+      "bytes": 3167351,
+      "src": "https://archive.org/download/gran-turismo-2-usa-simulation-mode-rev-1/Car%20Wash%21%21.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-usa-simulation-mode-rev-1",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_usa_simulation_mode_rev_1_east_city",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "East City",
+      "artist": "Gran Turismo 2 (NTSC-U)",
+      "album": "Gran Turismo 2 (NTSC-U) Simulation Mode",
+      "seconds": 138,
+      "bytes": 5531955,
+      "src": "https://archive.org/download/gran-turismo-2-usa-simulation-mode-rev-1/East%20City.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-usa-simulation-mode-rev-1",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_usa_simulation_mode_rev_1_license_test",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "License Test",
+      "artist": "Gran Turismo 2 (NTSC-U)",
+      "album": "Gran Turismo 2 (NTSC-U) Simulation Mode",
+      "seconds": 90,
+      "bytes": 3607253,
+      "src": "https://archive.org/download/gran-turismo-2-usa-simulation-mode-rev-1/License%20Test.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-usa-simulation-mode-rev-1",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_usa_simulation_mode_rev_1_menu_simulation_mode",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "Menu (Simulation Mode)",
+      "artist": "Gran Turismo 2 (NTSC-U)",
+      "album": "Gran Turismo 2 (NTSC-U) Simulation Mode",
+      "seconds": 216,
+      "bytes": 8646446,
+      "src": "https://archive.org/download/gran-turismo-2-usa-simulation-mode-rev-1/Menu%20%28Simulation%20Mode%29.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-usa-simulation-mode-rev-1",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_usa_simulation_mode_rev_1_my_home",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "My Home",
+      "artist": "Gran Turismo 2 (NTSC-U)",
+      "album": "Gran Turismo 2 (NTSC-U) Simulation Mode",
+      "seconds": 103,
+      "bytes": 4121222,
+      "src": "https://archive.org/download/gran-turismo-2-usa-simulation-mode-rev-1/My%20Home.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-usa-simulation-mode-rev-1",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_usa_simulation_mode_rev_1_north_city",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "North City",
+      "artist": "Gran Turismo 2 (NTSC-U)",
+      "album": "Gran Turismo 2 (NTSC-U) Simulation Mode",
+      "seconds": 133,
+      "bytes": 5306258,
+      "src": "https://archive.org/download/gran-turismo-2-usa-simulation-mode-rev-1/North%20City.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-usa-simulation-mode-rev-1",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_usa_simulation_mode_rev_1_south_city",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "South City",
+      "artist": "Gran Turismo 2 (NTSC-U)",
+      "album": "Gran Turismo 2 (NTSC-U) Simulation Mode",
+      "seconds": 150,
+      "bytes": 5987531,
+      "src": "https://archive.org/download/gran-turismo-2-usa-simulation-mode-rev-1/South%20City.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-usa-simulation-mode-rev-1",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt2_gran_turismo_2_usa_simulation_mode_rev_1_west_city",
+      "game": "gt2",
+      "type": "menu",
+      "season": "normal",
+      "title": "West City",
+      "artist": "Gran Turismo 2 (NTSC-U)",
+      "album": "Gran Turismo 2 (NTSC-U) Simulation Mode",
+      "seconds": 141,
+      "bytes": 5655253,
+      "src": "https://archive.org/download/gran-turismo-2-usa-simulation-mode-rev-1/West%20City.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/gran-turismo-2-usa-simulation-mode-rev-1",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt2"
+      ]
+    },
+    {
+      "id": "gt3_1_slipstream_arcade_mode_go_race_slipstream_arcade_mode_go_race",
+      "game": "gt3",
+      "type": "menu",
+      "season": "normal",
+      "title": "Slipstream (Arcade Mode, Go Race)",
+      "artist": "Gran Turismo 3 A-Spec (NTSC-U)",
+      "album": "Gran Turismo 3 A-Spec (NTSC-U) Arcade Mode",
+      "seconds": 150,
+      "bytes": 5073326,
+      "src": "https://archive.org/download/1-slipstream-arcade-mode-go-race/1%20-%20Slipstream%20%28Arcade%20Mode%2C%20Go%20Race%29.mp3",
+      "codec": "mp3",
+      "origin": "archive.org item",
+      "archiveItem": "https://archive.org/details/1-slipstream-arcade-mode-go-race",
+      "basis": "In-game screen named in the uploader's track title",
+      "appearsIn": [
+        "gt3"
+      ]
+    }
+  ]
+}
