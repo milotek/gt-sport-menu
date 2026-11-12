@@ -89,8 +89,8 @@ test("defaults keep the GT Sport view and playlist, and the GT Menu opens Option
   await expect(page.locator("#settings h2")).toHaveText("Options");
   await openOptions(page, "extended");
   await expect(page.locator("#extended")).not.toBeChecked();
-  expect(await poolGames(page)).toEqual({ "GT Sport": 62 });
-  await expect(page.locator("#packs label")).toHaveText([/GT Sport \(2017\) · 65 tracks/, /GT4 \(2004\) · 10 tracks/, /GT7 \(2022\) · 75 tracks/]);
+  expect(await poolGames(page)).toEqual({ "GT Sport": 63 });
+  await expect(page.locator("#packs label")).toHaveText([/GT Sport \(2017\) · 66 tracks/, /GT4 \(2004\) · 10 tracks/, /GT7 \(2022\) · 157 tracks/]);
   await expect(page.locator('input[name="xmas-mix"][value="holiday"]')).toBeChecked();
   expect(errors).toEqual([]);
 });
@@ -107,7 +107,7 @@ test("extended packs change the real audio source and play GT7 then GT4 @network
   await page.locator("#extended + span").click();
   await page.locator("#packs label", { hasText: "GT7" }).click();
   await page.locator("#packs label", { hasText: "GT Sport" }).click();
-  expect(await poolGames(page)).toEqual({ GT7: 75 });
+  expect(await poolGames(page)).toEqual({ GT7: 145 });
   await expect.poll(async () => (await audio(page)).src, { timeout: 30000 }).toContain("2022%20-%20Gran%20Turismo%207");
   const gt7 = await expectAdvancing(page);
   const rms7 = await energy(page);
@@ -133,14 +133,44 @@ test("Christmas stays holiday-only with extended packs unless mixing is chosen",
   await enter(page);
   await expect(page.locator("body")).toHaveAttribute("data-season", "christmas");
   await openOptions(page, "extended", "browser");
-  expect(await poolGames(page)).toEqual({ "GT Sport": 3 });
-  await expect(page.locator("#track-list li")).toHaveCount(3);
+  expect(await poolGames(page)).toEqual({ GT7: 12 });
+  await expect(page.locator("#track-list li")).toHaveCount(12);
+  await expect(page.locator("#track-list b").first()).toHaveText("Angels We Have Heard on High");
   await page.locator('label:has(input[name="xmas-mix"][value="all"])').click();
-  expect(await poolGames(page)).toEqual({ GT4: 10, GT7: 75 });
+  expect(await poolGames(page)).toEqual({ GT4: 10, GT7: 157 });
   await page.locator("#packs label", { hasText: "GT Sport" }).click();
-  expect(await poolGames(page)).toEqual({ "GT Sport": 65, GT4: 10, GT7: 75 });
+  expect(await poolGames(page)).toEqual({ "GT Sport": 66, GT4: 10, GT7: 157 });
   await page.locator('label:has(input[name="xmas-mix"][value="holiday"])').click();
+  expect(await poolGames(page)).toEqual({ "GT Sport": 3, GT7: 12 });
+  await page.locator("#packs label", { hasText: "GT Sport" }).click();
+  await page.locator("#packs label", { hasText: "GT7" }).click();
   expect(await poolGames(page)).toEqual({ "GT Sport": 3 });
+  await page.reload();
+  await expect(page.locator("body")).toHaveAttribute("data-ready", "true");
+  await enter(page);
+  expect(await poolGames(page)).toEqual({ "GT Sport": 3 });
+  await expect(page.locator('input[name="xmas-mix"][value="holiday"]')).toBeChecked();
+});
+
+test("GT7 Christmas jazz plays natively in holiday-only mode @network", async ({ page }) => {
+  test.setTimeout(180000);
+  const hosts = new Set();
+  page.on("request", (r) => hosts.add(new URL(r.url()).hostname));
+  await open(page, { now: "2026-12-22T20:00:00", prefs: { source: "soundtrack", extended: true, packs: ["gt7"] } });
+  await enter(page);
+  const a = await expectAdvancing(page);
+  expect(a.src).toMatch(/Best%20Lap%20Vol\.%202|CHRISTMAS%20TREE/);
+  expect(await energy(page)).toBeGreaterThan(0.005);
+  await expect(page.locator("#track-artist")).toContainText("· GT7");
+  const duration = await page.locator("#music").evaluate((el) => el.duration);
+  const manifest = await page.evaluate(() => fetch("data/extended.json").then((r) => r.json()));
+  const t = manifest.tracks.find((x) => x.src === a.src);
+  expect(t.season).toBe("christmas");
+  if (Number.isFinite(duration)) expect(Math.abs(duration - t.seconds)).toBeLessThan(3);
+  test.info().annotations.push({ type: "playback", description: JSON.stringify({ src: a.src, manifestSeconds: t.seconds, elementDuration: duration }) });
+  await page.mouse.move(960, 600);
+  await page.screenshot({ path: `${SHOTS}/18_gt7_christmas_playing.png` });
+  expect([...hosts].filter((h) => /youtube|ytimg|googlevideo/.test(h))).toEqual([]);
 });
 
 test("in-order play, repeat and volume persist @network", async ({ page }) => {
@@ -172,9 +202,9 @@ test("track browser searches, plays a pick and keeps favourites @network", async
   await open(page, { prefs: { source: "soundtrack", extended: true, packs: ["gtsport", "gt4"] } });
   await enter(page);
   await openOptions(page, "browser");
-  await expect(page.locator("#track-list li")).toHaveCount(72);
+  await expect(page.locator("#track-list li")).toHaveCount(73);
   await page.fill("#track-search", "ohira");
-  await expect(page.locator("#track-list li")).toHaveCount(10);
+  await expect(page.locator("#track-list li")).toHaveCount(11);
   await page.fill("#track-search", "bassman");
   await expect(page.locator("#track-list li")).toHaveCount(1);
   await page.locator("#track-list .pick").click();

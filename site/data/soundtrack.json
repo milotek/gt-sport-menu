@@ -863,6 +863,20 @@
       "archiveMember": "Gran Turismo Complete Soundtrack/2017 - Gran Turismo Sport/Original Soundtrack/61. Repetitive Manufacturing.mp3"
     },
     {
+      "id": "63_windroad",
+      "game": "gtsport",
+      "season": "normal",
+      "title": "Windroad",
+      "artist": "Isamu Ohira",
+      "seconds": 72,
+      "src": "https://archive.org/download/gran-turismo-complete-soundtrack/Gran%20Turismo%20Complete%20Soundtrack.rar/Gran%20Turismo%20Complete%20Soundtrack%2F2017%20-%20Gran%20Turismo%20Sport%2FTransmission%20Mode%2C%20Jingles%2C%20Christmas%2C%20Extra%2F63.%20Windroad.mp3",
+      "codec": "mp3",
+      "bytes": 2454948,
+      "origin": "archive.org member",
+      "archiveItem": "https://archive.org/details/gran-turismo-complete-soundtrack",
+      "archiveMember": "Gran Turismo Complete Soundtrack/2017 - Gran Turismo Sport/Transmission Mode, Jingles, Christmas, Extra/63. Windroad.mp3"
+    },
+    {
       "id": "65_jingle_bells",
       "game": "gtsport",
       "season": "christmas",

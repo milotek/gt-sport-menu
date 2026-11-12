@@ -241,7 +241,7 @@ test("soundtrack starts natively on the entry gesture and keeps playing @network
   const errors = await open(page, { source: "soundtrack", now: "2026-11-11T12:00:00" });
   const manifest = await page.evaluate(() => fetch("data/soundtrack.json").then((r) => r.json()));
   const normal = manifest.tracks.filter((t) => t.season === "normal").map((t) => t.src);
-  expect(normal).toHaveLength(62);
+  expect(normal).toHaveLength(63);
   expect((await audioState(page)).src).toBe("");
   await enter(page);
   await expect(page.locator("#track-status")).toHaveText("Playing", { timeout: 90000 });
@@ -319,7 +319,7 @@ test("narrow viewport stacks the layout without horizontal overflow", async ({ p
 
 test("credits page lists every catalogued source", async ({ page }) => {
   await page.goto("credits.html");
-  await expect(page.locator("#menu table tr")).toHaveCount(63);
+  await expect(page.locator("#menu table tr")).toHaveCount(64);
   await expect(page.locator("#christmas")).toContainText("Silent Night");
   await expect(page.locator("#christmas")).toContainText("We Wish You a Merry Christmas");
   await expect(page.locator("#backgrounds")).toContainText("gmedia.playstation.com");

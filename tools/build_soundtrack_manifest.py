@@ -3,6 +3,7 @@ import sys
 from pathlib import Path
 
 SEASONS = {"menu": "normal", "christmas": "christmas"}
+EXTRA_MENU = {"63_windroad"}
 DEST = Path(__file__).resolve().parent.parent / "site" / "data" / "soundtrack.json"
 
 
@@ -10,7 +11,7 @@ def main(report_path):
     report = json.loads(Path(report_path).read_text(encoding="utf-8"))
     tracks = []
     for f in report["files"]:
-        season = SEASONS.get(f["classification"])
+        season = SEASONS.get(f["classification"]) or ("normal" if Path(f["relative_path"]).stem in EXTRA_MENU else None)
         if not season:
             continue
         tracks.append({

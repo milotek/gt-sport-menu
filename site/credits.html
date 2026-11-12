@@ -69,13 +69,16 @@
       ${rows(menu)}`;
     const pack = (id) => ex.tracks.filter((t) => t.game === id);
     document.querySelector("#extended").innerHTML = `
-      <p>Off by default. These packs stream from the same archive.org upload (<a href="${esc(ex.source)}">${esc(ex.source)}</a>). Only menu music is included, and neither pack has holiday tracks.</p>
+      <p>Off by default. These packs stream from the same archive.org upload (<a href="${esc(ex.source)}">${esc(ex.source)}</a>). Only menu music is included. Duplicate recordings are listed once.</p>
       <h3>GT4 (2004): ${pack("gt4").length} tracks</h3>
       <p class="muted">${esc(pack("gt4")[0]?.basis)} Excluded: ${ex.excluded.gt4.map(esc).join(", ")}.</p>
       ${rows(pack("gt4"))}
       <h3>GT7 (2022): ${pack("gt7").length} tracks</h3>
-      <p class="muted">${esc(pack("gt7")[0]?.basis)}. Excluded ${ex.excluded.gt7.length} other files in the GT7 folder: race and dual-use tracks, untagged tracks, and files whose tags say they were ripped from GT5 releases.</p>
-      ${rows(pack("gt7"))}`;
+      <p class="muted">Menu: Default BGM "Menu" on the vgost.fandom.com GT7 table. GT7 reuses some older recordings; those files in the upload carry GT5 release tags. Excluded ${ex.excluded.gt7.length} files: race and dual-use tracks, untagged tracks and duplicate recordings.</p>
+      ${rows(pack("gt7").filter((t) => t.season === "normal"))}
+      <h3>GT7 Christmas: ${pack("gt7").filter((t) => t.season === "christmas").length} tracks</h3>
+      <p class="muted">GRAN TURISMO 7 JAZZ SELECTION BEST LAP vol.2 (Sony Interactive Entertainment, 2023-12-22), Christmas-period menu jazz per the <a href="https://ototoy.jp/_/default/p/1938367">label listing</a>, plus CHRISTMAS TREE (Mitsutoshi Satoh), a GT7 menu track filed as Christmas by title.</p>
+      ${rows(pack("gt7").filter((t) => t.season === "christmas"))}`;
     document.querySelector("#interface").innerHTML = `<table><tr><th>Item</th><th>Type</th><th>Detail</th></tr>
       ${c.interface.map((i) => `<tr><td>${esc(i.item)}</td><td>${esc(i.type)}</td><td class="muted">${esc(i.detail)}</td></tr>`).join("")}</table>`;
     const bg = (list, label) => `<h3>${label}</h3><table><tr><th>Image</th><th>Type</th><th>Credit</th></tr>
