@@ -321,7 +321,7 @@ test("credits page lists every catalogued source", async ({ page }) => {
   await page.goto("credits.html");
   await expect(page.locator("#menu table tr")).toHaveCount(64);
   await expect(page.locator("#extended h3")).toHaveCount(9);
-  await expect(page.locator("#extended h3").first()).toHaveText("GT (1997): 21 tracks");
+  await expect(page.locator("#extended h3").first()).toHaveText("GT (1997): 56 tracks");
   await expect(page.locator("#christmas")).toContainText("Silent Night");
   await expect(page.locator("#christmas")).toContainText("We Wish You a Merry Christmas");
   await expect(page.locator("#backgrounds")).toContainText("gmedia.playstation.com");
