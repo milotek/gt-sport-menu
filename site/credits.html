@@ -67,18 +67,15 @@
       <p class="gap">${esc(c.menuMusic.gaps)}</p>
       <ul>${st.missing.map((m) => `<li class="gap">${esc(m)}</li>`).join("")}</ul>
       ${rows(menu)}`;
-    const pack = (id) => ex.tracks.filter((t) => t.game === id);
+    const typed = (list) => `<table><tr><th>Artist</th><th>Title</th><th>Type</th><th>Also in</th><th>Source</th></tr>
+      ${list.map((t) => `<tr><td>${esc(t.artist)}</td><td>${esc(t.title)}</td><td>${esc(t.type)}${t.season === "christmas" ? ", Christmas" : ""}</td><td>${esc(t.appearsIn.filter((g) => g !== t.game).map((g) => ex.packs[g].label).join(", "))}</td><td><a href="${esc(t.src)}">${esc(t.origin)}</a></td></tr>`).join("")}</table>`;
+    const order = Object.entries(ex.packs).filter(([id]) => id !== "gtsport").concat([["gtsport", ex.packs.gtsport]]);
     document.querySelector("#extended").innerHTML = `
-      <p>Off by default. These packs stream from the same archive.org upload (<a href="${esc(ex.source)}">${esc(ex.source)}</a>). Only menu music is included. Duplicate recordings are listed once.</p>
-      <h3>GT4 (2004): ${pack("gt4").length} tracks</h3>
-      <p class="muted">${esc(pack("gt4")[0]?.basis)} Excluded: ${ex.excluded.gt4.map(esc).join(", ")}.</p>
-      ${rows(pack("gt4"))}
-      <h3>GT7 (2022): ${pack("gt7").length} tracks</h3>
-      <p class="muted">Menu: Default BGM "Menu" on the vgost.fandom.com GT7 table. GT7 reuses some older recordings; those files in the upload carry GT5 release tags. Excluded ${ex.excluded.gt7.length} files: race and dual-use tracks, untagged tracks and duplicate recordings.</p>
-      ${rows(pack("gt7").filter((t) => t.season === "normal"))}
-      <h3>GT7 Christmas: ${pack("gt7").filter((t) => t.season === "christmas").length} tracks</h3>
-      <p class="muted">GRAN TURISMO 7 JAZZ SELECTION BEST LAP vol.2 (Sony Interactive Entertainment, 2023-12-22), Christmas-period menu jazz per the <a href="https://ototoy.jp/_/default/p/1938367">label listing</a>, plus CHRISTMAS TREE (Mitsutoshi Satoh), a GT7 menu track filed as Christmas by title.</p>
-      ${rows(pack("gt7").filter((t) => t.season === "christmas"))}`;
+      <p>Off by default. Every pack streams from the same archive.org upload (<a href="${esc(ex.source)}">${esc(ex.source)}</a>). Type is Menu or Race only where a source says so: the vgost.fandom.com Default BGM tables (GT2, GT5, GT6, GT7), Isamu Ohira's menu composer credit (GT2 to GT4) and the GT7 Christmas jazz album (<a href="https://ototoy.jp/_/default/p/1938367">label listing</a>). Everything else is unclassified. A recording shared between games is listed once under the first game and plays once.</p>
+      ${order.map(([id, p]) => {
+        const list = ex.tracks.filter((t) => t.game === id);
+        return `<h3>${esc(p.label)} (${p.year}): ${list.length} tracks</h3>${ex.excluded[id]?.length ? `<p class="muted">Not listed: ${ex.excluded[id].length} jingles, cues or duplicate recordings.</p>` : ""}${typed(list)}`;
+      }).join("")}`;
     document.querySelector("#interface").innerHTML = `<table><tr><th>Item</th><th>Type</th><th>Detail</th></tr>
       ${c.interface.map((i) => `<tr><td>${esc(i.item)}</td><td>${esc(i.type)}</td><td class="muted">${esc(i.detail)}</td></tr>`).join("")}</table>`;
     const bg = (list, label) => `<h3>${label}</h3><table><tr><th>Image</th><th>Type</th><th>Credit</th></tr>

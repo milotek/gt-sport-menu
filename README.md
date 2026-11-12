@@ -53,11 +53,13 @@ No audio is bundled in this repo.
 - **Missing:** four tracks from the GTPlanet community menu list are not in that upload and are listed in the manifest's `missing` field.
 - **My files:** add audio in Settings. Files are stored in IndexedDB and stay in this browser.
 
-**Extended music** (Options > Extended music, off by default) adds opt-in packs from the same archive.org upload, built by `tools/build_extended_packs.py` into `site/data/extended.json`:
+**Extended music** (Options > Extended music, off by default) adds series packs from the same archive.org upload, built by `tools/build_extended_packs.py` into `site/data/extended.json`.
+Packs cover GT (1997), GT2, GT3, GT4, GT5, GT6, GT Sport's Transmission Mode folder and GT7, with a Menu / Race / All filter (Menu by default).
 
-- **GT4:** 10 Isamu Ohira tracks from the GT4 Original Game Soundtrack. Ohira is credited as GT4's menu composer. The opening theme, the fusion-rock tracks and the vocal race tracks are excluded.
-- **GT7:** 145 menu tracks that the vgost.fandom.com GT7 table marks as Default BGM "Menu", including recordings GT7 reuses from earlier games, and 12 Christmas tracks: the 11 tracks of GRAN TURISMO 7 JAZZ SELECTION BEST LAP vol.2 (Christmas-period menu jazz) plus CHRISTMAS TREE. Race and dual-use tracks are excluded, and duplicate recordings are listed once.
-- In Christmas season, extended music plays only the selected packs' holiday tracks unless "Christmas: mix all" is chosen. GT4 has none, so a GT4-only selection falls back to GT Sport's Christmas tracks.
+- Tracks are typed Menu or Race only with evidence: the vgost.fandom.com Default BGM tables (GT2, GT5, GT6, GT7), Isamu Ohira's menu composer credit (GT2 to GT4) and the GT7 Christmas jazz album. Everything else is unclassified and only plays under All.
+- A recording shared between games is listed once and labelled with every game it appears in.
+- GT7 has 12 Christmas tracks: the 11 tracks of GRAN TURISMO 7 JAZZ SELECTION BEST LAP vol.2 plus CHRISTMAS TREE. In Christmas season, extended music plays only the selected packs' holiday tracks unless "Christmas: mix all" is chosen. Packs without holiday tracks fall back to GT Sport's Christmas tracks.
+- Jingles and short cues are not listed.
 
 To swap in your own recordings, such as MIDI remakes, put them under `site/media/` and change each track's `src` to the relative path.
 Anything else in the entry (title, artist, season) drives the playlists and the now-playing banner.

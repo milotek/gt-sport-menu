@@ -17,6 +17,7 @@ const DEFAULTS = {
   extended: false,
   packs: ["gtsport"],
   xmasMix: "holiday",
+  trackType: "menu",
   favoritesOnly: false,
   favorites: [],
   ambienceIdle: 0,
@@ -34,7 +35,9 @@ const [catalog, soundtrack, extended] = await Promise.all([
   fetch("data/extended.json").then((r) => r.json()),
 ]);
 const allTracks = [...soundtrack.tracks, ...extended.tracks];
-const gameLabel = (t) => extended.packs[t.game]?.label;
+const gamesOf = (t) => t.appearsIn ?? [t.game];
+const gameLabel = (t) => gamesOf(t).map((g) => extended.packs[g]?.label).filter(Boolean).join(" · ");
+const typeOf = (t) => t.type ?? "menu";
 
 const now = () => (window.__gtNow ? new Date(window.__gtNow) : new Date());
 let season = resolveSeason(prefs.season, now(), catalog.christmasWindow);
@@ -100,7 +103,9 @@ function applyBackgrounds() {
 
 function soundtrackPool() {
   const packs = prefs.extended && prefs.packs.length ? prefs.packs : ["gtsport"];
-  const ofPacks = (s) => allTracks.filter((t) => packs.includes(t.game) && t.season === s);
+  const type = prefs.extended ? prefs.trackType : "menu";
+  const wanted = (t) => type === "all" || typeOf(t) === type;
+  const ofPacks = (s) => allTracks.filter((t) => gamesOf(t).some((g) => packs.includes(g)) && t.season === s && (s === "christmas" || wanted(t)));
   let tracks = ofPacks(season);
   if (season === "christmas") {
     if (prefs.extended && prefs.xmasMix === "all") tracks = [...tracks, ...ofPacks("normal")];
@@ -442,6 +447,7 @@ function syncControls() {
   for (const r of document.querySelectorAll('input[name="source"]')) r.checked = r.value === prefs.source;
   for (const r of document.querySelectorAll('input[name="order"]')) r.checked = r.value === prefs.order;
   for (const r of document.querySelectorAll('input[name="xmas-mix"]')) r.checked = r.value === prefs.xmasMix;
+  for (const r of document.querySelectorAll('input[name="track-type"]')) r.checked = r.value === prefs.trackType;
   for (const c of document.querySelectorAll("#packs input")) c.checked = prefs.packs.includes(c.value);
   $("#volume").value = prefs.volume;
   $("#sfx-volume").value = prefs.sfxVolume;
@@ -465,7 +471,7 @@ function wireSettings() {
     ...Object.entries(extended.packs).map(([id, p]) => {
       const label = document.createElement("label");
       label.className = "check";
-      const n = allTracks.filter((t) => t.game === id).length;
+      const n = allTracks.filter((t) => gamesOf(t).includes(id)).length;
       label.innerHTML = `<input type="checkbox" value="${id}"><span></span>`;
       label.querySelector("span").textContent = `${p.label} (${p.year}) · ${n} tracks`;
       label.querySelector("input").addEventListener("change", () => {
@@ -497,6 +503,13 @@ function wireSettings() {
       savePrefs();
       music.shuffle = prefs.order === "shuffle";
       if (music.track) music.reorder(musicTracks(prefs.source));
+    });
+  }
+  for (const r of document.querySelectorAll('input[name="track-type"]')) {
+    r.addEventListener("change", () => {
+      prefs.trackType = r.value;
+      savePrefs();
+      refreshPool();
     });
   }
   for (const r of document.querySelectorAll('input[name="xmas-mix"]')) {
