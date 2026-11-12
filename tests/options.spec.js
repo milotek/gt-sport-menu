@@ -332,8 +332,8 @@ test("track type filter reaches race and unclassified series tracks and plays th
   await open(page, { prefs: { source: "soundtrack", extended: true, packs: ["gt6"], trackType: "race" } });
   await enter(page);
   expect(await poolGames(page)).toEqual({ GT6: 41 });
-  const ext = await page.evaluate(() => fetch("data/extended.json").then((r) => r.json()));
-  const meta = (src) => ext.tracks.find((t) => t.src === src);
+  const ext = await page.evaluate(() => Promise.all(["data/extended.json", "data/coverage.json"].map((u) => fetch(u).then((r) => r.json()))));
+  const meta = (src) => ext.flatMap((m) => m.tracks).find((t) => t.src === src);
   const race = await expectAdvancing(page);
   expect(meta(race.src).type).toBe("race");
   expect(await energy(page)).toBeGreaterThan(0.005);

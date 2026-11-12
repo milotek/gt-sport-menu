@@ -251,7 +251,7 @@ test("soundtrack starts natively on the entry gesture and keeps playing @network
   const energy = await audioEnergy(page);
   test.info().annotations.push({ type: "playback", description: JSON.stringify({ src: first.src, rms: energy }) });
   expect(energy).toBeGreaterThan(0.005);
-  await expect(page.locator("#now-playing")).toHaveClass(/show/);
+  await expect(page.locator("#np-title")).toHaveText(await page.locator("#track-title").textContent());
   await page.mouse.move(960, 600);
   await page.screenshot({ path: `${SHOTS}/05_soundtrack_playing.png` });
   const title = await page.locator("#track-title").textContent();
